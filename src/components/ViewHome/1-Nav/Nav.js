@@ -1,7 +1,7 @@
 import Hamburger from "hamburger-react";
 import React, { useState } from "react";
 import styled from "styled-components";
-import TMDB from "../../images/tmbdlogo.svg";
+import TMDB from '../../../images/tmbdlogo.svg'
 
 const Navegation = styled.nav`
   height: auto;

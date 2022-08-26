@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Saul from "../../images/saul.jpg";
+import Saul from "../../../images/saul.jpg";
 
 const Main = styled.main`
   position: relative;

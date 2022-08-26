@@ -10,6 +10,7 @@ function App() {
       <QueryClientProvider client={queryClient}>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home />} />
         </Routes>
       </QueryClientProvider>
     </>

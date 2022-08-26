@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import Nav from "../../components/1-Nav/Nav";
-import Search from "../../components/2-Search/Search";
-import PopularMovies from "../../components/3-PopularMovies/PopularMovies";
-import PopularTv from "../../components/3-PopularMovies/PopularTv";
-import CoomingSoon from "../../components/4-CoomingSoon/CoomingSoon";
-import Trailers from "../../components/5-Trailers/Trailers";
-import TrendingToday from "../../components/6-Trending/TrendingToday";
-import Footer from "../../components/7-Footer/Footer";
+import Nav from '../../components/ViewHome/1-Nav/Nav'
+import Search from '../../components/ViewHome/2-Search/Search'
+import PopularMovies from '../../components/ViewHome/3-PopularMovies/PopularMovies'
+import PopularTv from '../../components/ViewHome/3-PopularMovies/PopularTv'
+import CoomingSoon from '../../components/ViewHome/4-CoomingSoon/CoomingSoon'
+import Trailers from "../../components/ViewHome/5-Trailers/Trailers";
+import Footer from "../../components/ViewHome/7-Footer/Footer";
+import TrendingToday from '../../components/ViewHome/6-Trending/TrendingToday'
+
 
 const MorePopular = styled.h3`
   font-family: "Roboto", sans-serif;
@@ -52,7 +53,7 @@ const Home = () => {
 
   return (
     <>
-      <Nav />
+      <Nav/>
       <Search />
 
       <SectionPopular>

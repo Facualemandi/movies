@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import LogoFooter from "../../images/LogoFooter.svg";
-
+import LogoFooter from '../../../images/LogoFooter.svg'
 const TheFooter = styled.footer`
   width: 100vw;
   background-color: #032541;

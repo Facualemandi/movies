@@ -1,20 +1,23 @@
 import React from "react";
-import styled from "styled-components";
 import { NavLink } from "react-router-dom";
-import { useReactQuery } from "../../hooks/useReactQuery";
-import NotFundImage from "../../images/ImagenNotFund.jpg";
-import LoaderMovies from "../../Loaders/LoaderMovies";
+import styled from "styled-components";
+import Trading from "../../../images/trading.svg";
+import { useReactQuery } from "../../../hooks/useReactQuery";
+import NotFundImage from "../../../images/ImagenNotFund.jpg";
+import LoaderMovies from '../../../Loaders/LoaderMovies';
+
 
 const SectionMovieCredits = styled.section`
   display: flex;
   overflow-x: auto;
   margin: auto;
-  max-height: 298px;
+  margin-top: 50px;
 `;
 const Img = styled.img`
   width: 170px;
   height: 230px;
   border-radius: 10px;
+  z-index: 200;
   @media (min-width: 1080px) {
     cursor: pointer;
     :hover {
@@ -36,22 +39,26 @@ const NameMovie = styled.p`
   font-size: 16px;
   font-family: "Roboto", sans-serif;
   margin-top: 10px;
+  font-weight: bold;
 `;
 const NavL = styled(NavLink)`
   text-decoration: none;
   color: black;
 `;
-
 const Main = styled.main`
   display: flex;
   flex-direction: column;
   margin: auto;
   overflow-x: auto;
+  position: relative;
+  margin-top: 180px;
+  
   @media (min-width: 780px) {
     width: 780px;
   }
   @media (min-width: 1080px) {
     width: 1080px;
+    margin-top: 0 ;
   }
   @media (min-width: 1380px) {
     width: 1380px;
@@ -77,40 +84,50 @@ const Main = styled.main`
     margin-bottom: 15px;
   }
 `;
+const ImgTrending = styled.img`
+position: absolute;
+z-index: auto;
+margin-top: 50px;
+`
+const DataMovie = styled.p`
+  font-size: 14px;
+  font-family: "Roboto", sans-serif;
+  margin-top: 10px;
+`
 
-const PopularTv = () => {
-  // let X = Math.floor(Math.random() * 150);
+
+const TrendingToday = () => {
   const URL_IMAGE = "https://image.tmdb.org/t/p/w500";
-  const API_URL = "https://api.themoviedb.org/3/tv/popular?api_key=c2b89afaf7bfa26140ce3d2bc5b5d295&page=1"
+  const API_URL = "https://api.themoviedb.org/3/trending/movie/day?api_key=c2b89afaf7bfa26140ce3d2bc5b5d295"
+  const {data, status} = useReactQuery([`${API_URL}`],'trending')
 
-  const { data, status } =useReactQuery(`${API_URL}`, 'tv');
+
   if (status === "loading") {
     return <LoaderMovies/>;
   }
 
   return (
     <>
-        <Main>
+      <Main>
         <SectionMovieCredits>
           {data.results.map((movie) => (
             <NavL key={movie.id} to={`/movie/${movie.id}`}>
               <DivMovie>
                 <Img
                   alt={movie.original_title}
-                  src={
-                    movie.poster_path
-                      ? `${URL_IMAGE}${movie.poster_path}`
-                      : NotFundImage
-                  }
-                />
-                <NameMovie>{movie.name}</NameMovie>
+                  src={movie.poster_path ? `${URL_IMAGE}${movie.poster_path}` : NotFundImage } />
+                <NameMovie>{`${movie.original_title || movie.name}`}</NameMovie>
+                <DataMovie>{movie.release_date || movie.first_air_date}</DataMovie>
               </DivMovie>
             </NavL>
           ))}
         </SectionMovieCredits>
+        
+        
+        <ImgTrending alt="" src={Trading}/>
       </Main>
     </>
   );
 };
 
-export default PopularTv;
+export default TrendingToday;

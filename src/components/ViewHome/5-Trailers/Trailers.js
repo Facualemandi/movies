@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import TrailersImg from "../../images/videoImg.jpg";
+import TrailersImg from "../../../images/videoImg.jpg";
 
 const Main = styled.main`
   width: 100vw;
