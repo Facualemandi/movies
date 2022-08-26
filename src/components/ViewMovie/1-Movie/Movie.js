@@ -11,6 +11,7 @@ import Credits from "../2-Credits/Credits";
 import AllCredits from "../3-AllCredits/AllCredits";
 import LoaderMovies from "../../../Loaders/LoaderMovies";
 import Reviews from "../4-Reviews/Reviews";
+import ImageMovie from "../5-ImageMovie/ImageMovie";
 
 const SecondNav = styled.nav`
   height: auto;
@@ -364,8 +365,8 @@ const Movie = () => {
         </SectionImg>
         <AllCredits/>
         <Reviews/>
+        <ImageMovie/>
         {/* 
-        <Reviews />
         <ImageMovie />
         <Recomendations/> */}
       </Main>
