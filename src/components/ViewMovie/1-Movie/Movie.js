@@ -12,6 +12,8 @@ import AllCredits from "../3-AllCredits/AllCredits";
 import LoaderMovies from "../../../Loaders/LoaderMovies";
 import Reviews from "../4-Reviews/Reviews";
 import ImageMovie from "../5-ImageMovie/ImageMovie";
+import Recomendations from "../6-Recomendation/Recomendation";
+import Footer from "../../../components/ViewHome/7-Footer/Footer";
 
 const SecondNav = styled.nav`
   height: auto;
@@ -366,10 +368,9 @@ const Movie = () => {
         <AllCredits/>
         <Reviews/>
         <ImageMovie/>
-        {/* 
-        <ImageMovie />
-        <Recomendations/> */}
+        <Recomendations/>
       </Main>
+    
 
       <ContainerTrailer value={getTrailer}>
         <ClosedTrailer onClick={closedTrailer} />
@@ -377,7 +378,7 @@ const Movie = () => {
           {!getTrailer ? "" : <YouTube videoId={setVideo} opts={opts} />}
         </SectionTrailer>
       </ContainerTrailer>
-      {/* <Footer /> */}
+      <Footer/>
     </>
   );
 };
