@@ -111,7 +111,7 @@ const TrendingToday = () => {
       <Main>
         <SectionMovieCredits>
           {data.results.map((movie) => (
-            <NavL key={movie.id} to={`/movie/${movie.id}`}>
+            <NavL key={movie.id} to={`/movie/${movie.id}/${movie.original_title}`}>
               <DivMovie>
                 <Img
                   alt={movie.original_title}

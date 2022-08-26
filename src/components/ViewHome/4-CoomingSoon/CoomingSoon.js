@@ -110,7 +110,7 @@ const CoomingSoon = () => {
         <H3>Próximamente</H3>
         <SectionMovieCredits>
           {data.results.map((movie) => (
-            <NavL key={movie.id} to={`/movie/${movie.id}`}>
+            <NavL key={movie.id} to={`/movie/${movie.id}/${movie.title}`}>
               <DivMovie>
                 <Img
                   alt={movie.title}
