@@ -298,15 +298,19 @@ const Movie = () => {
 
   if (status === "loading") {
     return <LoaderMovies/>;
+  }else{
+    console.log(data)
   }
 
   const numerOne = Number.parseFloat(data.vote_average).toFixed(1);
 
   const openTrailer = () => {
-    const trailer = data.videos.results.find( (vid) => vid.name === "Official Trailer" );
+    const trailer = data.videos.results.find( (vid) => vid.name === "Official Trailer" || 'Official Trailer [Subtitled]');
+    console.log(trailer)
     setGetTrailer(true);
     return setSetVideo(trailer.key);
   };
+
   const closedTrailer = () => {
     setGetTrailer(false);
   };
