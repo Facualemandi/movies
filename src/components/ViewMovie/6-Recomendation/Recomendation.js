@@ -96,6 +96,11 @@ const Main = styled.main`
     margin-bottom: 15px;
   }
 `;
+const H3 = styled.h3`
+  font-family: "Roboto", sans-serif;
+  font-size: 22px;
+  margin: 15px;
+`;
 
 
 const Recomendations = () => {
@@ -114,10 +119,10 @@ const Recomendations = () => {
   return (
     <>
       <Main>
-        <p>Recomendations</p>
+        <H3>Recomendations</H3>
         <SectionMovieCredits>
           {newData.map((el) => (
-            <NavL to={`/tv/${el.id}/${el.title}`}>
+            <NavL to={`/movie/${el.id}/${el.title}`}>
               <Img
                   alt={el.original_title}
                   src={
