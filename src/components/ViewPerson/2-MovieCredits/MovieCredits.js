@@ -83,7 +83,7 @@ const MovieCredits = () => {
         <H3>Known For </H3>
         <SectionMovieCredits>
           {newData.map((movie) => (
-            <NavL key={movie.id} to={`/movie/${movie.id}`}>
+            <NavL key={movie.id} to={`/movie/${movie.id}/${movie.original_title}`}>
              <DivMovie>
                <Img alt={movie.original_title} src={movie.poster_path ? `${URL_IMAGE}${movie.poster_path}` : NotFundImage} />
                <NameMovie>{movie.original_title}</NameMovie>

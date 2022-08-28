@@ -33,8 +33,8 @@ const Main = styled.main`
 `;
 
 const Credits = () => {
-  const { id } = useParams();
-  const API_URL = `https://api.themoviedb.org/3/movie/${id}/credits?api_key=c2b89afaf7bfa26140ce3d2bc5b5d295`
+  const { id, watch } = useParams();
+  const API_URL = `https://api.themoviedb.org/3/${watch}/${id}/credits?api_key=c2b89afaf7bfa26140ce3d2bc5b5d295`
   const { data, status } = useReactQuery(`${API_URL}`, 'credits')
 
   if (status === "loading") {

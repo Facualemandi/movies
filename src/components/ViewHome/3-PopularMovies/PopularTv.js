@@ -87,6 +87,8 @@ const PopularTv = () => {
   const { data, status } =useReactQuery(`${API_URL}`, 'tv');
   if (status === "loading") {
     return <LoaderMovies/>;
+  }else{
+    console.log(data)
   }
 
   return (
@@ -94,7 +96,7 @@ const PopularTv = () => {
         <Main>
         <SectionMovieCredits>
           {data.results.map((movie) => (
-            <NavL key={movie.id} to={`/movie/${movie.id}/${movie.original_title}`}>
+            <NavL key={movie.id} to={`/tv/${movie.id}/${movie.original_title}`}>
               <DivMovie>
                 <Img
                   alt={movie.original_title}

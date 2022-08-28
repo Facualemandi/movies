@@ -4,9 +4,10 @@ import styled from "styled-components";
 import { FaFacebookSquare } from "react-icons/fa";
 import { FaTwitterSquare } from "react-icons/fa";
 import { FaInstagramSquare } from "react-icons/fa";
-import { useReactQuery } from "../../../hooks/useReactQuery";
-import MovieCredits from "../2-MovieCredits/MovieCredits";
-import MoviesPerson from "../3-MoviePerson/MoviePerson";
+
+import { useReactQuery } from "../../hooks/useReactQuery";
+import MovieCredits from "../../components/ViewPerson/2-MovieCredits/MovieCredits";
+import MoviesPerson from "../../components/ViewPerson/3-MoviePerson/MoviePerson";
 
 const Main = styled.main`
   width: 100vw;
@@ -152,11 +153,11 @@ const Person = () => {
         <DivConatainer>
           <H2>{data.name}</H2>
           <Biography>{data.biography}</Biography>
-          <MovieCredits/>
-          <MoviesPerson/>
+          <MovieCredits />
+          <MoviesPerson />
         </DivConatainer>
       </Main>
-{/* 
+      {/* 
       <Footer /> */}
     </>
   );

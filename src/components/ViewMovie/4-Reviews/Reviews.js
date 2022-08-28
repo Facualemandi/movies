@@ -73,8 +73,8 @@ const NoReview = styled.p`
 `
 
 const Reviews = () => {
-  const { id, name } = useParams();
-  const API_URL = `https://api.themoviedb.org/3/movie/${id}/reviews?api_key=c2b89afaf7bfa26140ce3d2bc5b5d295&page=1`;
+  const { id, name, watch } = useParams();
+  const API_URL = `https://api.themoviedb.org/3/${watch}/${id}/reviews?api_key=c2b89afaf7bfa26140ce3d2bc5b5d295&page=1`;
   const { data, status } = useReactQuery(`${API_URL}`, `${name}`);
 
   if (status === "loading") {

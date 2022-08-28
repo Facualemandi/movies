@@ -99,9 +99,9 @@ const Main = styled.main`
 
 
 const Recomendations = () => {
-  const { id } = useParams();
+  const { id, watch } = useParams();
   const URL_IMAGE = "https://image.tmdb.org/t/p/w500";
-  const API_URL = `https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=c2b89afaf7bfa26140ce3d2bc5b5d295&page=1`;
+  const API_URL = `https://api.themoviedb.org/3/${watch}/${id}/recommendations?api_key=c2b89afaf7bfa26140ce3d2bc5b5d295&page=1`;
   const { data, status } = useReactQuery(`${API_URL}`, "recomendations");
 
   if (status === "loading") {
@@ -117,7 +117,7 @@ const Recomendations = () => {
         <p>Recomendations</p>
         <SectionMovieCredits>
           {newData.map((el) => (
-            <NavL to={`/movie/${el.id}/${el.title}`}>
+            <NavL to={`/tv/${el.id}/${el.title}`}>
               <Img
                   alt={el.original_title}
                   src={
