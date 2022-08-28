@@ -122,7 +122,7 @@ const Recomendations = () => {
         <H3>Recomendations</H3>
         <SectionMovieCredits>
           {newData.map((el) => (
-            <NavL to={`/movie/${el.id}/${el.title}`}>
+            <NavL to={`/${watch}/${el.id}/${el.title}`}>
               <Img
                   alt={el.original_title}
                   src={
