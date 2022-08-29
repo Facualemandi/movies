@@ -2,96 +2,91 @@ import React from "react";
 import { NavLink, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { useReactQuery } from "../../hooks/useReactQuery";
+import ImageNFound from "../../images/ImagenNotFund.jpg";
 
+
+const ContainerAll = styled.main`
+ margin: 10px;
+ padding: 10px;
+`
+const ContainerMovie = styled.section`
+ display: flex;
+`
 const Img = styled.img`
-  width: 130px;
-  height: 170px;
-`;
+width: 100px;
+height: 130px;
+border-radius: 10px;
+`
+const Name = styled.p`
+font-family: 'Montserrat', sans-serif;
+font-size: 16px;
+font-weight: bold;
+margin: 10px;
+`
+const ContainerP = styled.section`
+display: flex;
+`
+const ContainerPerson = styled.section`
+display: flex;
+flex-direction: column;
+`
+const SectionPerson = styled.section`
+font-family: 'Roboto', sans-serif;
+font-size: 16px;
+margin: 10px;
+`
+const OverViewMovie = styled.p`
+font-family: 'Roboto', sans-serif;
+font-size: 14px;
+margin: 10px;
+max-height: 90px;
+overflow-y: auto;
 
-const DivImg = styled.div`
-  display: flex;
-  margin: 10px;
-  padding: 10px;
-  box-shadow: 0 0 5px 0 rgba(106, 106, 106, 0.875);
-  border-radius: 10px;
-
-  div {
-    min-height: 170px;
-  }
-`;
-
-const OverView = styled.p`
-  padding: 10px;
-  max-height: 120px;
-  overflow-y: auto;
-  font-family: "Roboto", sans-serif;
-`;
-
-const SecOne = styled.section`
-  height: auto;
-  margin: 10px;
-`;
-const SecTwo = styled.section`
-  height: 108px;
-  display: flex;
-  justify-content: start;
-  align-items: flex-end;
-`;
-
-const Title = styled.p`
-  font-family: "Roboto", sans-serif;
-  font-size: 18px;
-  font-weight: bold;
-`;
-const Time = styled.p`
-  font-family: "Roboto", sans-serif;
-  font-size: 14px;
-`;
-const NavL = styled(NavLink)`
-  color: black;
-  text-decoration: none;
-`;
-
+`
 const MovieSearch = () => {
   const { movie, toSearch } = useParams();
-  const URL_IMG = "https://image.tmdb.org/t/p/w500";
 
-  const API_URL = `https://api.themoviedb.org/3/search/${toSearch}?api_key=c2b89afaf7bfa26140ce3d2bc5b5d295&query=${movie}&page=1`;
+  const URL_IMG = "https://image.tmdb.org/t/p/w500";
+  const API_URL = `https://api.themoviedb.org/3/search/multi?api_key=c2b89afaf7bfa26140ce3d2bc5b5d295&query=${toSearch}`;
 
   const { data, status } = useReactQuery(`${API_URL}`, `${movie}`);
 
   if (status === "loading") {
     return <p>Cargando</p>;
+  } else {
+    console.log(data);
   }
 
   return (
     <>
-      <div>
-        <p>Facu</p>
-        <p>Facu</p>
-        <p>Facu</p>
-      </div>
+      {data.results.map((el) => (
+        <ContainerAll key={el.id}>
+         {el.media_type === 'person' && 
 
-      {data.results.map((data) => (
-        <NavL
-          key={data.id}
-          to={`/${toSearch}/${data.id}/${data.title}`}
-        >
-          <DivImg>
-            <Img alt={data.title} src={`${URL_IMG}${data.poster_path}`} />
+         <ContainerP>
+            <Img alt={el.name} src={`${!el.profile_path ? ImageNFound : `${URL_IMG}${el.profile_path}` }`}/>
+            <ContainerPerson>
+              <Name>{el.name}</Name>
 
-            <div>
-              <SecOne>
-                <Title>{data.title || data.original_title}</Title>
-                <Time>{data.release_date}</Time>
-              </SecOne>
+               <SectionPerson>
+                  <p>{el.known_for_department}</p>
+                  <p>{el.known_for.map(el => el.original_title || el.name).join(', ')}</p>
+                </SectionPerson>
+            </ContainerPerson>
+          </ContainerP>
+          }
+     
 
-              <SecTwo>
-                <OverView>{data.overview}</OverView>
-              </SecTwo>
-            </div>
-          </DivImg>
-        </NavL>
+       
+         {el.media_type === 'movie' && 
+         <ContainerMovie>
+            <Img alt={el.name} src={`${!el.poster_path ? ImageNFound : `${URL_IMG}${el.poster_path}` }`}/>
+            <section>
+             <Name>{el.title}</Name>
+             <OverViewMovie>{el.overview}</OverViewMovie>
+            </section>
+          </ContainerMovie>}
+        </ContainerAll>
       ))}
     </>
   );
