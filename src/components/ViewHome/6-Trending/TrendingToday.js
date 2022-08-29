@@ -87,13 +87,19 @@ const Main = styled.main`
 const ImgTrending = styled.img`
 position: absolute;
 z-index: auto;
-margin-top: 50px;
+margin-top: 100px;
 `
 const DataMovie = styled.p`
   font-size: 14px;
   font-family: "Roboto", sans-serif;
   margin-top: 10px;
 `
+const H3 = styled.h3`
+  font-family: "Roboto", sans-serif;
+  font-size: 26px;
+  margin: 10px;
+  margin-top: 50px;
+`;
 
 
 const TrendingToday = () => {
@@ -109,6 +115,7 @@ const TrendingToday = () => {
   return (
     <>
       <Main>
+      <H3>Tendencias</H3>
         <SectionMovieCredits>
           {data.results.map((movie) => (
             <NavL key={movie.id} to={`/movie/${movie.id}/${movie.original_title}`}>

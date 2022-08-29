@@ -9,11 +9,10 @@ const Main = styled.main`
 `;
 
 const SectionBtns = styled.section`
-  display: flex;
   align-items: center;
   button {
     border: none;
-    margin-left: 30px;
+    margin: 10px;
     height: max-content;
     padding: 10px;
     border-radius: 5px;

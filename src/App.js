@@ -17,7 +17,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/:watch/:id/:name" element={<Movie />} />
             <Route path="/person/:id/:name" element={<Person />} />
-            <Route path="/element/:movie" element={<SearchMovie/>} />
+            <Route path="/:toSearch/:movie" element={<SearchMovie/>} />
           </Routes>
         </QueryClientProvider>
     </>

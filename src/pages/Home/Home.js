@@ -42,11 +42,21 @@ const Select = styled.select`
   background-color: white;
   font-size: 18px;
   font-family: "Montserrat", sans-serif;
+  border-radius: 50px;
+  background-color: red;
+  background: rgb(34, 193, 195);
+  background: linear-gradient(
+    90deg,
+    rgba(34, 193, 195, 1) 28%,
+    rgba(0, 139, 207, 1) 100%
+  );
+  color: black;
+  font-weight: bold;
 `;
 
 const Home = () => {
-  const [valueSelect, setValueSelect] = useState("streaming");
 
+  const [valueSelect, setValueSelect] = useState("streaming");
   const onChangeValue = (e) => {
     setValueSelect(e.target.value);
   };
