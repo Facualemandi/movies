@@ -181,7 +181,7 @@ const Search = () => {
   const navigate = useNavigate();
   const keyPressHandler = (e) => {
     if (e.key === "Enter") {
-      navigate(`/element/${onChangeValue}`);
+      navigate(`/${getSelect}/${onChangeValue}`);
     }
   };
 
@@ -215,12 +215,12 @@ const Search = () => {
             <FormSearch>
               <Input
                 type={"text"}
-                placeholder="Ingresa tu pelicula"
+                placeholder="Busca por - Pelicula, Actor/Actriz, Serie, etc..."
                 onChange={changeValue}
                 value={onChangeValue}
                 onKeyDown={keyPressHandler}
               />
-              <NavL to={`/movie/${onChangeValue}`}>
+              <NavL to={`/${getSelect}/${onChangeValue}`}>
                 <ToSearch>Search</ToSearch>
               </NavL>
             </FormSearch>
