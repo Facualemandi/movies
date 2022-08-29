@@ -14,6 +14,7 @@ const Img = styled.img`
   z-index: 100;
   display: flex;
   margin: auto;
+  margin-top: 60px;
 
   @media (max-width: 320px) {
     height: 340px;

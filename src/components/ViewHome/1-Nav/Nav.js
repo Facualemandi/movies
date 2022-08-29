@@ -7,6 +7,9 @@ const Navegation = styled.nav`
   height: auto;
   background-color: #032541;
   width: 100vw;
+  position: fixed;
+  z-index: 2000;
+  top: 0px;
 `;
 const Logo = styled.img`
   width: 200px;
@@ -19,6 +22,7 @@ const SectionOne = styled.section`
   display: flex;
   justify-content: space-between;
   margin: auto;
+
   @media (min-width: 780px) {
     width: 780px;
     justify-content: flex-start;
@@ -35,6 +39,8 @@ const SectionOne = styled.section`
 const DivBurger = styled.div`
   margin: 10px;
   z-index: 500;
+  position: fixed;
+  right: 10px;
   @media (min-width: 780px) {
     display: none;
   }
@@ -44,6 +50,7 @@ const Ul = styled.ul`
   display: flex;
   margin: 10px;
   z-index: 2500;
+  height: 100vh;
 
   @media (max-width: 780px) {
     margin: 0;
@@ -52,7 +59,7 @@ const Ul = styled.ul`
     transition: 0.5s;
     background-color: red;
     transform: ${({ value }) =>
-      value ? "translateX(30%)" : "translateX(100%)"};
+      value ? "translateX(40%)" : "translateX(100%)"};
     width: 100vw;
     background-color: #0b1b29;
     z-index: 300;

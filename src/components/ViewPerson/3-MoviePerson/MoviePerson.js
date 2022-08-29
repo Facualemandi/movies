@@ -61,17 +61,13 @@ const NavL = styled(NavLink)`
 `;
 
 const MoviesPerson = () => {
-  console.log(useParams());
   const { id } = useParams();
   const API_URL = `https://api.themoviedb.org/3/person/${id}/combined_credits?api_key=c2b89afaf7bfa26140ce3d2bc5b5d295`;
   const { data, status } = useReactQuery(`${API_URL}`, "MoviesPerson");
 
   if (status === "loading") {
     return <p>Cargando</p>;
-  }else{
-    console.log(data)
   }
-
   const newData = data.cast.slice(0, 20);
 
 
@@ -82,7 +78,6 @@ const MoviesPerson = () => {
         <Container>
           {newData.map((film) => (
               <NavL key={film.id}  to={`/movie/${film.id}/${film.original_title}`}>
-                {console.log(film)}
               <SectionMoviesPerson>
                 <Year>
                   {film.release_date

@@ -24,7 +24,7 @@ const Img = styled.img`
   height: 200px;
   position: absolute;
   top: 0px;
-  z-index: 400;
+  z-index: 100;
   margin-top: 15px;
   @media (min-width: 780px) {
     width: 780px;

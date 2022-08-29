@@ -83,7 +83,7 @@ const Reviews = () => {
     return <p>Cargando</p>;
   }
   const newData = data.results.splice(0, 1);
-  console.log(newData)
+
 
 
 

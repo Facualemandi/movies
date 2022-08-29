@@ -111,8 +111,6 @@ const Recomendations = () => {
 
   if (status === "loading") {
     return <p>Cargando</p>;
-  } else {
-    console.log(data);
   }
   const newData = data.results.slice(0, 15);
 
