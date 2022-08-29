@@ -6,6 +6,7 @@ import TMDB from '../../../images/tmbdlogo.svg'
 const Navegation = styled.nav`
   height: auto;
   background-color: #032541;
+  width: 100vw;
 `;
 const Logo = styled.img`
   width: 200px;

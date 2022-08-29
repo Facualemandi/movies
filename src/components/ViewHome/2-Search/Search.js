@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Saul from "../../../images/saul.jpg";
+import Nav from "../1-Nav/Nav";
 
 const Main = styled.main`
   position: relative;
@@ -13,7 +15,7 @@ const Img = styled.img`
   display: flex;
   margin: auto;
 
-  @media (max-width: 320px){
+  @media (max-width: 320px) {
     height: 340px;
   }
   @media (min-width: 780px) {
@@ -31,7 +33,7 @@ const Img = styled.img`
 
 const H2 = styled.h2`
   font-size: 35px;
-  @media (min-width: 1080px){
+  @media (min-width: 1080px) {
     font-size: 55px;
   }
 `;
@@ -39,7 +41,7 @@ const H3 = styled.h3`
   font-size: 25px;
   margin-top: 10px;
 
-  @media (min-width: 1080px){
+  @media (min-width: 1080px) {
     font-size: 35px;
   }
 `;
@@ -65,15 +67,16 @@ const SectionWelcome = styled.section`
   @media (min-width: 1080px) {
     width: 1080px;
     top: 10%;
-}
-@media (min-width: 1380px) {
+  }
+  @media (min-width: 1380px) {
     width: 1380px;
     top: 20%;
   }
 `;
 
-const SentionSearch = styled.form`
+const FormSearch = styled.form`
   display: flex;
+  justify-content: space-between;
   align-items: center;
   background-color: white;
   margin-top: 30px;
@@ -82,7 +85,6 @@ const SentionSearch = styled.form`
 `;
 
 const ToSearch = styled.p`
-  width: 20%;
   min-width: 100px;
   padding: 15px;
   border-radius: 35px;
@@ -112,17 +114,35 @@ const Container = styled.section`
   }
   @media (min-width: 1080px) {
     width: 1080px;
-
   }
   @media (min-width: 1380px) {
     width: 1380px;
- 
   }
 `;
 
-
+const NavL = styled(NavLink)`
+  text-decoration: none;
+  color: white;
+`;
 
 const Search = () => {
+  const [onChangeValue, setOnChangeValue] = useState("");
+
+  const changeValue = (e) => {
+    setOnChangeValue(e.target.value);
+  };
+
+  const navigate = useNavigate();
+
+  const keyPressHandler = (e) => {
+    if (e.key === 'Enter') {
+      // alert("You pressed enter!");
+      navigate(`/element/${onChangeValue}`);
+    }
+  };
+
+
+
   return (
     <>
       <Main>
@@ -137,10 +157,18 @@ const Search = () => {
               descubrir. Explora ahora.
             </H3>
 
-            <SentionSearch>
-              <Input type={"text"} />
-              <ToSearch>Search</ToSearch>
-            </SentionSearch>
+            <FormSearch>
+              <Input
+                type={"text"}
+                placeholder="Ingresa tu pelicula"
+                onChange={changeValue}
+                value={onChangeValue}
+                onKeyDown={keyPressHandler}
+              />
+              <NavL to={`/element/${onChangeValue}`}>
+                <ToSearch>Search</ToSearch>
+              </NavL>
+            </FormSearch>
           </SectionWelcome>
         </Container>
       </Main>
