@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { useReactQuery } from "../../hooks/useReactQuery";
 
@@ -12,7 +12,7 @@ const DivImg = styled.div`
   display: flex;
   margin: 10px;
   padding: 10px;
-  border: 1px solid grey;
+  box-shadow: 0 0 5px 0 rgba(106, 106, 106, 0.875);
   border-radius: 10px;
 
   div {
@@ -24,7 +24,8 @@ const OverView = styled.p`
   padding: 10px;
   max-height: 120px;
   overflow-y: auto;
-  `;
+  font-family: "Roboto", sans-serif;
+`;
 
 const SecOne = styled.section`
   height: auto;
@@ -37,8 +38,23 @@ const SecTwo = styled.section`
   align-items: flex-end;
 `;
 
+const Title = styled.p`
+  font-family: "Roboto", sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+`;
+const Time = styled.p`
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+`;
+const NavL = styled(NavLink)`
+color:  black;
+text-decoration: none;
+`
+
 const MovieSearch = () => {
   const { movie, toSearch } = useParams();
+  console.log(useParams())
   const URL_IMG = "https://image.tmdb.org/t/p/w500";
 
   const API_URL = `https://api.themoviedb.org/3/search/${toSearch}?api_key=c2b89afaf7bfa26140ce3d2bc5b5d295&query=${movie}&page=1`;
@@ -61,13 +77,14 @@ const MovieSearch = () => {
 
       {data.results.map((data) => (
         <>
+        <NavL to={`/${toSearch}/${data.id}/${data.title || data.original_title}`}>
           <DivImg>
             <Img alt={data.title} src={`${URL_IMG}${data.poster_path}`} />
 
             <div>
               <SecOne>
-                <p>{data.title || data.original_title}</p>
-                <p>{data.release_date}</p>
+                <Title>{data.title || data.original_title}</Title>
+                <Time>{data.release_date}</Time>
               </SecOne>
 
               <SecTwo>
@@ -75,6 +92,7 @@ const MovieSearch = () => {
               </SecTwo>
             </div>
           </DivImg>
+        </NavL>
         </>
       ))}
     </>

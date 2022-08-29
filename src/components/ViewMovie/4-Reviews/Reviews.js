@@ -84,7 +84,8 @@ const Reviews = () => {
   }
   const newData = data.results.splice(0, 1);
 
-  console.log(newData);
+
+
 
   return (
     <>
@@ -97,7 +98,7 @@ const Reviews = () => {
                   <Avatar
                     alt=""
                     src={
-                      el.author_details.avatar_path === null
+                       el.author_details.avatar_path || el.results.backdrop_path === null
                         ? NullAvatar
                         : TheAvatar
                     }
