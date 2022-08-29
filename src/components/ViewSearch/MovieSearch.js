@@ -5,12 +5,7 @@ import { useReactQuery } from "../../hooks/useReactQuery";
 import ImageNFound from "../../images/ImagenNotFund.jpg";
 
 
-const ContainerMovie = styled.section`
-  display: flex;
-  box-shadow: 0 0 5px 0 rgba(147, 147, 147, 0.793);
-  border-radius: 15px;
-  margin: 10px;
-`;
+
 const Img = styled.img`
   width: 70px;
   height: 100px;
@@ -21,14 +16,15 @@ const Img = styled.img`
 const Name = styled.p`
   font-family: "Montserrat", sans-serif;
   font-size: 16px;
-  font-weight: bold;
   margin: 10px;
 `;
-const ContainerP = styled.section`
+const NavL = styled(NavLink)`
   display: flex;
   margin: 10px;
   box-shadow: 0 0 5px 0 rgba(147, 147, 147, 0.793);
   border-radius: 15px;
+  text-decoration: none;
+  color: black;
 `;
 const SecPerson = styled.section`
   display: flex;
@@ -40,22 +36,26 @@ const SectionPerson = styled.section`
   margin: 10px;
 `;
 const OverViewMovie = styled.p`
-  font-family: "Roboto", sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 14px;
   margin: 10px;
-  max-height: 90px;
+  max-height: 70px;
   overflow-y: auto;
 `;
-const MovieSearch = () => {
-  const { movie, toSearch } = useParams();
-  const [theMovies, setTheMovies] = useState(true);
-  const [thePerson, setThePerson] = useState(false)
-  const [theTv, setTheTv] = useState(false)
+const Parraagraph = styled.p`
+font-family: 'Roboto', sans-serif;
+font-size: 22px;
+font-weight: bold;
+margin: 10px;
+`
 
+const MovieSearch = () => {
+  const { toSearch } = useParams();
+  console.log(useParams())
   const URL_IMG = "https://image.tmdb.org/t/p/w500";
   const API_URL = `https://api.themoviedb.org/3/search/multi?api_key=c2b89afaf7bfa26140ce3d2bc5b5d295&query=${toSearch}`;
 
-  const { data, status } = useReactQuery(`${API_URL}`, `${movie}`);
+  const { data, status } = useReactQuery(`${API_URL}`, `${toSearch}`);
 
   if (status === "loading") {
     return <p>Cargando</p>;
@@ -66,13 +66,14 @@ const MovieSearch = () => {
   const movies = data.results.filter((el) => el.media_type === "movie");
   const person = data.results.filter((el) => el.media_type === "person");
   const tv = data.results.filter((el) => el.media_type === "tv");
-  console.log(tv);
+  console.log(tv)
 
   return (
     <>
       <main>
+        <Parraagraph>{person.length === 0 ? 'No hay personas con este nombre.' : 'Personas'}</Parraagraph>
           {person.map((person) => (
-            <ContainerP>
+            <NavL to={`/person/${person.id}/${person.name}`}>
               <Img
                 alt={person.name}
                 src={`${ !person.profile_path ? ImageNFound : `${URL_IMG}${person.profile_path}` }`} />
@@ -84,12 +85,12 @@ const MovieSearch = () => {
                   <p>{person.known_for.map((el) => el.original_title || el.name).join(", ")}</p>
                 </SectionPerson>
               </SecPerson>
-            </ContainerP>
+            </NavL>
           ))}
     
-
+    <Parraagraph>{movies.length === 0 ? 'No hay peliculas con este nombre.' : 'Peliculas'}</Parraagraph>
         {movies.map((movie) => (
-          <ContainerMovie>
+          <NavL to={`/movie/${movie.id}/${movie.name}`}>
             <Img
               alt={movie.name}
               src={`${ !movie.poster_path ? ImageNFound : `${URL_IMG}${movie.poster_path}` }`} />
@@ -97,20 +98,20 @@ const MovieSearch = () => {
               <Name>{movie.title}</Name>
               <OverViewMovie>{movie.overview}</OverViewMovie>
             </section>
-          </ContainerMovie>
+          </NavL>
         ))}
 
-      
+    <Parraagraph>{tv.length === 0 ? 'No hay TV shows con este nombre.' : 'TV Shows'}</Parraagraph>
         {tv.map((movie) => (
-          <ContainerMovie>
+          <NavL to={`/tv/${movie.id}/${movie.name}`}>
             <Img
               alt={movie.name}
               src={`${ !movie.poster_path ? ImageNFound : `${URL_IMG}${movie.poster_path}` }`} />
             <section>
-              <Name>{movie.title || 'No have'}</Name>
+              <Name>{movie.name || 'No have'}</Name>
               <OverViewMovie>{movie.overview || 'No Have'}</OverViewMovie>
             </section>
-          </ContainerMovie>
+          </NavL>
 
         ))}
 
