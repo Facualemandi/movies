@@ -302,8 +302,6 @@ const Movie = () => {
 
   if (status === "loading") {
     return <LoaderMovies/>;
-  }else{
-    console.log(data)
   }
 
   const numerOne = Number.parseFloat(data.vote_average).toFixed(1);

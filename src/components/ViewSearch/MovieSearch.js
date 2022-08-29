@@ -48,13 +48,12 @@ const Time = styled.p`
   font-size: 14px;
 `;
 const NavL = styled(NavLink)`
-color:  black;
-text-decoration: none;
-`
+  color: black;
+  text-decoration: none;
+`;
 
 const MovieSearch = () => {
   const { movie, toSearch } = useParams();
-  console.log(useParams())
   const URL_IMG = "https://image.tmdb.org/t/p/w500";
 
   const API_URL = `https://api.themoviedb.org/3/search/${toSearch}?api_key=c2b89afaf7bfa26140ce3d2bc5b5d295&query=${movie}&page=1`;
@@ -63,8 +62,6 @@ const MovieSearch = () => {
 
   if (status === "loading") {
     return <p>Cargando</p>;
-  } else {
-    console.log(data);
   }
 
   return (
@@ -76,8 +73,10 @@ const MovieSearch = () => {
       </div>
 
       {data.results.map((data) => (
-        <>
-        <NavL to={`/${toSearch}/${data.id}/${data.title || data.original_title}`}>
+        <NavL
+          key={data.id}
+          to={`/${toSearch}/${data.id}/${data.title}`}
+        >
           <DivImg>
             <Img alt={data.title} src={`${URL_IMG}${data.poster_path}`} />
 
@@ -93,7 +92,6 @@ const MovieSearch = () => {
             </div>
           </DivImg>
         </NavL>
-        </>
       ))}
     </>
   );

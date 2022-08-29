@@ -87,10 +87,8 @@ const PopularTv = () => {
   const { data, status } =useReactQuery(`${API_URL}`, 'tv');
   if (status === "loading") {
     return <LoaderMovies/>;
-  }else{
-    console.log(data)
   }
-
+  
   return (
     <>
         <Main>

@@ -83,7 +83,6 @@ const Main = styled.main`
 
 const PopularMovies = () => {
   // let X = Math.floor(Math.random() * 150);
-  console.log(useParams());
   const URL_IMAGE = "https://image.tmdb.org/t/p/w500";
   const API_URL ="https://api.themoviedb.org/3/movie/popular?api_key=c2b89afaf7bfa26140ce3d2bc5b5d295&page=1";
   const { data, status } = useReactQuery(`${API_URL}`, "popular");

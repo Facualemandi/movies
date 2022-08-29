@@ -55,6 +55,8 @@ const DivUser = styled.div`
 
 const Content = styled.p`
   padding-top: 15px;
+  max-height: 250px;
+  overflow-y: auto;
 `;
 
 const AllReview = styled.p`
@@ -79,10 +81,9 @@ const Reviews = () => {
 
   if (status === "loading") {
     return <p>Cargando</p>;
-  } else {
-    console.log(data);
   }
   const newData = data.results.splice(0, 1);
+  console.log(newData)
 
 
 
@@ -95,26 +96,9 @@ const Reviews = () => {
           : newData.map((el) => (
               <section key={el.id}>
                 <DivContainerUser>
-                  <Avatar
-                    alt=""
-                    src={
-                       el.author_details.avatar_path || el.results.backdrop_path === null
-                        ? NullAvatar
-                        : TheAvatar
-                    }
-                  />
+                  <Avatar alt="" src={TheAvatar } />
                   <DivUser>
-                    <h4>
-                      A review <span>{el.author}</span>
-                    </h4>
-                    <p>
-                      Written by
-                      <span>
-                        {el.author_details.name === ""
-                          ? ` ${el.author}`
-                          : `${el.author_details.name}`}
-                      </span>
-                    </p>
+                    <h4> A review <span>{el.author}</span> </h4>
                     <Content>{el.content}</Content>
                   </DivUser>
                 </DivContainerUser>

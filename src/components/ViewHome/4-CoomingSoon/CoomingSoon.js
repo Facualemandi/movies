@@ -100,8 +100,6 @@ const CoomingSoon = () => {
 
   if (status === "loading") {
     return <LoaderMovies />;
-  } else {
-    console.log(data);
   }
 
   return (
