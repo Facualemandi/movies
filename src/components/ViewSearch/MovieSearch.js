@@ -1,50 +1,56 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { useReactQuery } from "../../hooks/useReactQuery";
 import ImageNFound from "../../images/ImagenNotFund.jpg";
 
 
-const ContainerAll = styled.main`
- margin: 10px;
- padding: 10px;
-`
 const ContainerMovie = styled.section`
- display: flex;
-`
+  display: flex;
+  box-shadow: 0 0 5px 0 rgba(147, 147, 147, 0.793);
+  border-radius: 15px;
+  margin: 10px;
+`;
 const Img = styled.img`
-width: 100px;
-height: 130px;
-border-radius: 10px;
-`
+  width: 70px;
+  height: 100px;
+  border-radius: 10px;
+  min-width: 100px;
+  margin: 5px;
+`;
 const Name = styled.p`
-font-family: 'Montserrat', sans-serif;
-font-size: 16px;
-font-weight: bold;
-margin: 10px;
-`
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  margin: 10px;
+`;
 const ContainerP = styled.section`
-display: flex;
-`
-const ContainerPerson = styled.section`
-display: flex;
-flex-direction: column;
-`
+  display: flex;
+  margin: 10px;
+  box-shadow: 0 0 5px 0 rgba(147, 147, 147, 0.793);
+  border-radius: 15px;
+`;
+const SecPerson = styled.section`
+  display: flex;
+  flex-direction: column;
+`;
 const SectionPerson = styled.section`
-font-family: 'Roboto', sans-serif;
-font-size: 16px;
-margin: 10px;
-`
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  margin: 10px;
+`;
 const OverViewMovie = styled.p`
-font-family: 'Roboto', sans-serif;
-font-size: 14px;
-margin: 10px;
-max-height: 90px;
-overflow-y: auto;
-
-`
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  margin: 10px;
+  max-height: 90px;
+  overflow-y: auto;
+`;
 const MovieSearch = () => {
   const { movie, toSearch } = useParams();
+  const [theMovies, setTheMovies] = useState(true);
+  const [thePerson, setThePerson] = useState(false)
+  const [theTv, setTheTv] = useState(false)
 
   const URL_IMG = "https://image.tmdb.org/t/p/w500";
   const API_URL = `https://api.themoviedb.org/3/search/multi?api_key=c2b89afaf7bfa26140ce3d2bc5b5d295&query=${toSearch}`;
@@ -57,37 +63,59 @@ const MovieSearch = () => {
     console.log(data);
   }
 
+  const movies = data.results.filter((el) => el.media_type === "movie");
+  const person = data.results.filter((el) => el.media_type === "person");
+  const tv = data.results.filter((el) => el.media_type === "tv");
+  console.log(tv);
+
   return (
     <>
-      {data.results.map((el) => (
-        <ContainerAll key={el.id}>
-         {el.media_type === 'person' && 
+      <main>
+          {person.map((person) => (
+            <ContainerP>
+              <Img
+                alt={person.name}
+                src={`${ !person.profile_path ? ImageNFound : `${URL_IMG}${person.profile_path}` }`} />
+              <SecPerson>
+                <Name>{person.name}</Name>
 
-         <ContainerP>
-            <Img alt={el.name} src={`${!el.profile_path ? ImageNFound : `${URL_IMG}${el.profile_path}` }`}/>
-            <ContainerPerson>
-              <Name>{el.name}</Name>
-
-               <SectionPerson>
-                  <p>{el.known_for_department}</p>
-                  <p>{el.known_for.map(el => el.original_title || el.name).join(', ')}</p>
+                <SectionPerson>
+                  <p>{person.known_for_department}</p>
+                  <p>{person.known_for.map((el) => el.original_title || el.name).join(", ")}</p>
                 </SectionPerson>
-            </ContainerPerson>
-          </ContainerP>
-          }
-     
+              </SecPerson>
+            </ContainerP>
+          ))}
+    
 
-       
-         {el.media_type === 'movie' && 
-         <ContainerMovie>
-            <Img alt={el.name} src={`${!el.poster_path ? ImageNFound : `${URL_IMG}${el.poster_path}` }`}/>
+        {movies.map((movie) => (
+          <ContainerMovie>
+            <Img
+              alt={movie.name}
+              src={`${ !movie.poster_path ? ImageNFound : `${URL_IMG}${movie.poster_path}` }`} />
             <section>
-             <Name>{el.title}</Name>
-             <OverViewMovie>{el.overview}</OverViewMovie>
+              <Name>{movie.title}</Name>
+              <OverViewMovie>{movie.overview}</OverViewMovie>
             </section>
-          </ContainerMovie>}
-        </ContainerAll>
-      ))}
+          </ContainerMovie>
+        ))}
+
+      
+        {tv.map((movie) => (
+          <ContainerMovie>
+            <Img
+              alt={movie.name}
+              src={`${ !movie.poster_path ? ImageNFound : `${URL_IMG}${movie.poster_path}` }`} />
+            <section>
+              <Name>{movie.title || 'No have'}</Name>
+              <OverViewMovie>{movie.overview || 'No Have'}</OverViewMovie>
+            </section>
+          </ContainerMovie>
+
+        ))}
+
+
+      </main>
     </>
   );
 };
