@@ -3,7 +3,6 @@ import React from "react";
 import { NavLink, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { helpHttp } from "../../../Helper/Helphttps";
-import { useReactQuery } from "../../../hooks/useReactQuery";
 
 const Container = styled.section`
   box-shadow: 0 0 10px 0 rgba(80, 80, 80, 0.185);

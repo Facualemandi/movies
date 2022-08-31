@@ -56,6 +56,7 @@ const Select = styled.select`
 const Home = () => {
 
   const [valueSelect, setValueSelect] = useState("streaming");
+  
   const onChangeValue = (e) => {
     setValueSelect(e.target.value);
   };

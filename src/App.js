@@ -1,6 +1,7 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Routes, Route } from "react-router-dom";
+import AllPopular from "./pages/TotalPopular/AllPopular";
 import Home from "./pages/Home/Home";
 import Movie from "./pages/Movie/Movie";
 import Person from "./pages/Person/Person";
@@ -20,8 +21,8 @@ function App() {
             <Route path="/person/:id/:name" element={<Person />} />
             <Route path="/:toSearch" element={<SearchMovie/>} />
             {/* Rutas desde el nav */}
-             
-             <Route path="" element=''/>
+            <Route path="/total/:watch" element={<AllPopular/>}/>
+
           </Routes>
           <ReactQueryDevtools initialIsOpen={false}/>
         </QueryClientProvider>

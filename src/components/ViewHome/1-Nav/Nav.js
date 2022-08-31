@@ -1,5 +1,6 @@
 import Hamburger from "hamburger-react";
 import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import TMDB from "../../../images/tmbdlogo.svg";
 
@@ -109,6 +110,11 @@ const DivOne = styled.div`
   }
 `;
 
+const NavL = styled(NavLink)`
+text-decoration: none;
+color: black;
+`
+
 const Nav = () => {
   const [isOpen, setOpen] = useState(false);
 
@@ -119,17 +125,19 @@ const Nav = () => {
 
         <SectionItemsNav value={isOpen}>
           <DivOne>
-            <p>Peliculas</p>
+
+              <p>Peliculas</p>
+            
             <Ul>
-              <li>Popular</li>
-              <li>Transmitiendo ahora</li>
-              <li>Próximamente</li>
-              <li>Lo mas valorado</li>
+             <NavL to={'/total/movie'}><li>Popular</li></NavL>
+             <NavL to={'/total/movie'}><li>Transmitiendo ahora</li></NavL>
+             <NavL to={'/total/movie'}><li>Próximamente</li></NavL>
+             <NavL to={'/total/movie'}><li>Lo mas valorado</li></NavL>
             </Ul>
 
             <p>TV show</p>
             <Ul>
-              <li>Popular</li>
+            <NavL to={'/total/movie'}><li>Tv</li></NavL>
               <li>Transmitiendo ahora</li>
               <li>On Tv</li>
               <li>Lo mas valorado</li>

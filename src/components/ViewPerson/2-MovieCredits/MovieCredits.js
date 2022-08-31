@@ -3,7 +3,6 @@ import React from "react";
 import { NavLink, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { helpHttp } from "../../../Helper/Helphttps";
-import { useReactQuery } from "../../../hooks/useReactQuery";
 import NotFundImage from '../../../images/ImagenNotFund.jpg'
 
 
