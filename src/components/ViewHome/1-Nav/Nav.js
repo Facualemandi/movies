@@ -1,7 +1,7 @@
 import Hamburger from "hamburger-react";
 import React, { useState } from "react";
 import styled from "styled-components";
-import TMDB from '../../../images/tmbdlogo.svg'
+import TMDB from "../../../images/tmbdlogo.svg";
 
 const Navegation = styled.nav`
   height: auto;
@@ -47,15 +47,43 @@ const DivBurger = styled.div`
 `;
 
 const Ul = styled.ul`
+  li {
+    font-family: "Roboto", sans-serif;
+    margin: 10px;
+    margin-left: 40px;
+    margin-top: 20px;
+    color: white;
+    text-decoration: none;
+    list-style: none;
+  }
+
+  @media (min-width: 780px) {
+    display: none;
+  }
+`;
+
+const SectionItemsNav = styled.section`
   display: flex;
   margin: 10px;
   z-index: 2500;
   height: 100vh;
 
+  p {
+    margin-left: 20px;
+    margin-bottom: 5px;
+    font-family: "Roboto", sans-serif;
+    font-weight: bold;
+    color: white;
+    margin-top: 30px;
+  }
 
-
-  @media(min-width: 780px){
+  @media (min-width: 780px) {
     max-height: 60px;
+    justify-content: center;
+    align-items: center;
+    p {
+      margin-left: 50px;
+    }
   }
 
   @media (max-width: 780px) {
@@ -71,16 +99,13 @@ const Ul = styled.ul`
     z-index: 300;
   }
 `;
-
-const Li = styled.li`
-  margin: 15px 50px;
-  list-style: none;
-  color: white;
-  font-size: 18px;
-  font-family: "Montserrat", sans-serif;
+const DivOne = styled.div`
   @media (max-width: 780px) {
+    margin-top: 30px;
+  }
+  @media (min-width: 780px) {
+    display: flex;
     margin: 15px;
-    padding: 15px;
   }
 `;
 
@@ -92,11 +117,30 @@ const Nav = () => {
       <SectionOne>
         <Logo alt="" src={TMDB} />
 
-        <Ul value={isOpen}>
-          <Li>Peliculas</Li>
-          <Li>TV show</Li>
-          <Li>People</Li>
-        </Ul>
+        <SectionItemsNav value={isOpen}>
+          <DivOne>
+            <p>Peliculas</p>
+            <Ul>
+              <li>Popular</li>
+              <li>Transmitiendo ahora</li>
+              <li>Próximamente</li>
+              <li>Lo mas valorado</li>
+            </Ul>
+
+            <p>TV show</p>
+            <Ul>
+              <li>Popular</li>
+              <li>Transmitiendo ahora</li>
+              <li>On Tv</li>
+              <li>Lo mas valorado</li>
+            </Ul>
+
+            <p>People</p>
+            <Ul>
+              <li>Personas populares</li>
+            </Ul>
+          </DivOne>
+        </SectionItemsNav>
 
         <DivBurger>
           <Hamburger

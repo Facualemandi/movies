@@ -19,6 +19,9 @@ function App() {
             <Route path="/:watch/:id/:name" element={<Movie />} />
             <Route path="/person/:id/:name" element={<Person />} />
             <Route path="/:toSearch" element={<SearchMovie/>} />
+            {/* Rutas desde el nav */}
+             
+             <Route path="" element=''/>
           </Routes>
           <ReactQueryDevtools initialIsOpen={false}/>
         </QueryClientProvider>
