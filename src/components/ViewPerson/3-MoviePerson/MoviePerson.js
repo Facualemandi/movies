@@ -1,6 +1,8 @@
+import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import { NavLink, useParams } from "react-router-dom";
 import styled from "styled-components";
+import { helpHttp } from "../../../Helper/Helphttps";
 import { useReactQuery } from "../../../hooks/useReactQuery";
 
 const Container = styled.section`
@@ -63,7 +65,14 @@ const NavL = styled(NavLink)`
 const MoviesPerson = () => {
   const { id } = useParams();
   const API_URL = `https://api.themoviedb.org/3/person/${id}/combined_credits?api_key=c2b89afaf7bfa26140ce3d2bc5b5d295`;
-  const { data, status } = useReactQuery(`${API_URL}`, "MoviesPerson");
+
+  const getMoviesPerson = async () => {
+    const response = await Promise.all([helpHttp().get(API_URL)]);
+    return response[0]
+}
+ const { data , status } = useQuery([`moviePerson`], getMoviesPerson);
+
+
 
   if (status === "loading") {
     return <p>Cargando</p>;

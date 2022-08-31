@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import NullAvatar from "../../../images/ImagenNotFund.jpg";
 import TheAvatar from "../../../images/avatar.jpg";
-import { useReactQuery } from "../../../hooks/useReactQuery";
 import { useQuery } from "@tanstack/react-query";
 import { helpHttp } from "../../../Helper/Helphttps";
 
@@ -90,8 +89,6 @@ const Reviews = () => {
 
   if (status === "loading") {
     return <p>Cargando</p>;
-  }else{
-    console.log(data)
   }
 
   const newData = data.results.splice(0, 1);

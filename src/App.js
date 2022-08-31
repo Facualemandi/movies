@@ -1,4 +1,5 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home/Home";
 import Movie from "./pages/Movie/Movie";
@@ -19,6 +20,7 @@ function App() {
             <Route path="/person/:id/:name" element={<Person />} />
             <Route path="/:toSearch" element={<SearchMovie/>} />
           </Routes>
+          <ReactQueryDevtools initialIsOpen={false}/>
         </QueryClientProvider>
     </>
   );

@@ -3,7 +3,6 @@ import React from "react";
 import { NavLink, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { helpHttp } from "../../../Helper/Helphttps";
-import { useReactQuery } from "../../../hooks/useReactQuery";
 import NotFound from "../../../images/ImagenNotFund.jpg";
 
 const Img = styled.img`
@@ -77,7 +76,7 @@ const NavL = styled(NavLink)`
   color: black;
 `;
 const AllCredits = () => {
-  const { id, watch } = useParams();
+  const { id, watch, name } = useParams();
   const URL_IMAGE = "https://image.tmdb.org/t/p/w500";
   const API_URL = `https://api.themoviedb.org/3/${watch}/${id}/credits?api_key=c2b89afaf7bfa26140ce3d2bc5b5d295`;
   
@@ -85,17 +84,13 @@ const AllCredits = () => {
     const response = await Promise.all([helpHttp().get(API_URL)]);
     return response[0]
 }
- const { data , status } = useQuery(["allCredits"], getAllCredits);
-
-
+ const { data , status } = useQuery([`allCredits`], getAllCredits);
 
   if (status === "loading") {
     return <p>Cargando</p>;
-  }else{
-    console.log(data)
   }
 
-  const newData = data.crew.slice(0, 20);
+  const newData = data.cast.slice(0, 20);
 
 
   return (

@@ -1,6 +1,8 @@
+import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import { NavLink, useParams } from "react-router-dom";
 import styled from "styled-components";
+import { helpHttp } from "../../Helper/Helphttps";
 import { useReactQuery } from "../../hooks/useReactQuery";
 import ImageNFound from "../../images/ImagenNotFund.jpg";
 
@@ -65,21 +67,26 @@ margin: 10px;
 
 const MovieSearch = () => {
   const { toSearch } = useParams();
-  console.log(useParams())
   const URL_IMG = "https://image.tmdb.org/t/p/w500";
   const API_URL = `https://api.themoviedb.org/3/search/multi?api_key=c2b89afaf7bfa26140ce3d2bc5b5d295&query=${toSearch}`;
-  const { data, status } = useReactQuery(`${API_URL}`, `${toSearch}`);
+
+
+
+  const getSearch = async () => {
+    const response = await Promise.all([helpHttp().get(API_URL)]);
+    return response[0].results
+}
+ const { data , status } = useQuery([`${toSearch}`], getSearch);
+
 
   if (status === "loading") {
     return <p>Cargando</p>;
-  } else {
-    console.log(data);
   }
 
-  const movies = data.results.filter((el) => el.media_type === "movie");
-  const person = data.results.filter((el) => el.media_type === "person");
-  const tv = data.results.filter((el) => el.media_type === "tv");
-  console.log(tv)
+  const movies = data.filter((el) => el.media_type === "movie");
+  const person = data.filter((el) => el.media_type === "person");
+  const tv = data.filter((el) => el.media_type === "tv");
+ 
 
   return (
     <>

@@ -1,10 +1,8 @@
-
 import { useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { helpHttp } from "../../../Helper/Helphttps";
-import { useReactQuery } from "../../../hooks/useReactQuery";
 
 const Main = styled.main`
   margin-top: 30px;
@@ -106,8 +104,6 @@ const ImageMovie = () => {
 
   if (status === "loading") {
     return <p>Cargando...</p>;
-  }else{
-    console.log(data)
   }
 
 
