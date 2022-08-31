@@ -1,9 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
-import { useReactQuery } from "../../../hooks/useReactQuery";
 import NotFundImage from "../../../images/ImagenNotFund.jpg";
 import LoaderMovies from "../../../Loaders/LoaderMovies";
+import { helpHttp } from "../../../Helper/Helphttps";
+import { useQuery } from "@tanstack/react-query";
 
 
 const SectionMovieCredits = styled.section`
@@ -84,7 +85,12 @@ const PopularTv = () => {
   const URL_IMAGE = "https://image.tmdb.org/t/p/w500";
   const API_URL = "https://api.themoviedb.org/3/tv/popular?api_key=c2b89afaf7bfa26140ce3d2bc5b5d295&page=1"
 
-  const { data, status } =useReactQuery(`${API_URL}`, 'tv');
+  const getPopular = async () => {
+    const response = await Promise.all([helpHttp().get(API_URL)]);
+    return response[0].results
+}
+  const { data, status } = useQuery(['tv'], getPopular);
+
   if (status === "loading") {
     return <LoaderMovies/>;
   }
