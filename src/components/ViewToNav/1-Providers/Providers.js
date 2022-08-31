@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import styled from "styled-components";
+import { useTheContext } from "../../../context/context";
 import { helpHttp } from "../../../Helper/Helphttps";
 
 
@@ -25,19 +26,22 @@ const Providers = () => {
     return response[0];
   };
 
+  
   const {data, status} = useQuery(['Providers'], getProviders);
+  
+  const {changeValueSelect} = useTheContext();
 
   if(status === 'loading'){
     return <p>Cargando...</p>
   }else{
     console.log(data)
   }
-
+  
   return (
     <>
-      <SectionSelect defaultValue="Argentina">
+      <SectionSelect onChange={changeValueSelect} defaultValue="AR">
           {data.map(op => (
-             <option key={op.iso_3166_1} value={op.native_name}>{op.native_name}</option>
+             <option key={op.iso_3166_1} value={op.iso_3166_1}>{op.native_name}</option>
           ))}
       </SectionSelect>
     </>

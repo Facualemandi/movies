@@ -6,7 +6,7 @@ import { helpHttp } from "../../Helper/Helphttps";
 import { BiChevronRight } from "react-icons/bi";
 import { BiChevronLeft } from "react-icons/bi";
 import Providers from "../../components/ViewToNav/1-Providers/Providers";
-import { BiChevronDown } from "react-icons/bi";
+import ProvidersCountry from "../../components/ViewToNav/2 - ProvidersCountry/ProvidersCountry";
 
 const Img = styled.img`
   width: 91px;
@@ -99,7 +99,6 @@ const SelectShow = styled.section`
 `;
 
 const AllPopular = () => {
-  const [showSelect, setShowSelect] = useState(false);
   const { watch } = useParams();
   const URL_IMAGE = "https://image.tmdb.org/t/p/w500";
   const [page, setPage] = useState(1);
@@ -126,8 +125,6 @@ const AllPopular = () => {
     return <p>cargando...</p>;
   }
 
-  const openSelect = () =>
-    !showSelect ? setShowSelect(true) : setShowSelect(false);
 
   return (
     <>
@@ -137,6 +134,7 @@ const AllPopular = () => {
         <SelectShow>
           <p>Donde lo puedo mirar ?</p>
           <Providers />
+          <ProvidersCountry/>
         </SelectShow>
 
 

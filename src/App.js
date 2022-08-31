@@ -7,25 +7,27 @@ import Movie from "./pages/Movie/Movie";
 import Person from "./pages/Person/Person";
 import SearchMovie from "./pages/SearchMovie/SearchMovie";
 import ScrollToTop from "./ScrollToTop/ScrollToTop";
+import { ProvidersContex } from "./context/context";
 
 function App() {
   const queryClient = new QueryClient();
 
   return (
     <>
-      <ScrollToTop/>
+      <ProvidersContex>
+      <ScrollToTop />
         <QueryClientProvider client={queryClient}>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/:watch/:id/:name" element={<Movie />} />
             <Route path="/person/:id/:name" element={<Person />} />
-            <Route path="/:toSearch" element={<SearchMovie/>} />
+            <Route path="/:toSearch" element={<SearchMovie />} />
             {/* Rutas desde el nav */}
-            <Route path="/total/:watch" element={<AllPopular/>}/>
-
+            <Route path="/total/:watch" element={<AllPopular />} />
           </Routes>
-          <ReactQueryDevtools initialIsOpen={false}/>
+          <ReactQueryDevtools initialIsOpen={false} />
         </QueryClientProvider>
+      </ProvidersContex>
     </>
   );
 }
