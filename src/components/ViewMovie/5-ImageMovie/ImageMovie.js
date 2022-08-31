@@ -1,7 +1,9 @@
 
+import { useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
+import { helpHttp } from "../../../Helper/Helphttps";
 import { useReactQuery } from "../../../hooks/useReactQuery";
 
 const Main = styled.main`
@@ -92,13 +94,23 @@ const ImageMovie = () => {
   const { id, watch } = useParams();
   const URL_IMAGE = "https://image.tmdb.org/t/p/w500";
   const API_URL = `https://api.themoviedb.org/3/${watch}/${id}/images?api_key=c2b89afaf7bfa26140ce3d2bc5b5d295`;
-  const { data, status } = useReactQuery(`${API_URL}`, 'images');
-
   
+  const getImages = async () => {
+    const response = await Promise.all([helpHttp().get(API_URL)]);
+    return response[0]
+}
+ const { data , status } = useQuery(["images"], getImages);
+ 
+
+
 
   if (status === "loading") {
     return <p>Cargando...</p>;
+  }else{
+    console.log(data)
   }
+
+
   const backd = data.backdrops.slice(0, 5);
   const fiveLogos = data.logos.slice(0, 5);
   const post = data.posters.slice(0, 5);

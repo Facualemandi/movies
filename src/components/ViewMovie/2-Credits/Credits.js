@@ -46,9 +46,7 @@ const Credits = () => {
 
   if (status === "loading") {
     return <p>Cargando</p>;
-  } else {
-    console.log(data);
-  }
+  } 
 
   const director = data.crew.filter((el) => el.job === "Director");
   const screen = data.crew.filter((el) => el.job === "Screenplay");

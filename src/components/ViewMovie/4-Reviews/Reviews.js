@@ -4,6 +4,8 @@ import styled from "styled-components";
 import NullAvatar from "../../../images/ImagenNotFund.jpg";
 import TheAvatar from "../../../images/avatar.jpg";
 import { useReactQuery } from "../../../hooks/useReactQuery";
+import { useQuery } from "@tanstack/react-query";
+import { helpHttp } from "../../../Helper/Helphttps";
 
 const Main = styled.main``;
 
@@ -77,15 +79,22 @@ const NoReview = styled.p`
 const Reviews = () => {
   const { id, name, watch } = useParams();
   const API_URL = `https://api.themoviedb.org/3/${watch}/${id}/reviews?api_key=c2b89afaf7bfa26140ce3d2bc5b5d295&page=1`;
-  const { data, status } = useReactQuery(`${API_URL}`, `${name}`);
+
+  const getReviews = async () => {
+    const response = await Promise.all([helpHttp().get(API_URL)]);
+    return response[0]
+}
+  const { data , status } = useQuery([`${name}`], getReviews);
+
+
 
   if (status === "loading") {
     return <p>Cargando</p>;
+  }else{
+    console.log(data)
   }
+
   const newData = data.results.splice(0, 1);
-
-
-
 
 
   return (

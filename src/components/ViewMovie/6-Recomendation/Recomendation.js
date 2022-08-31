@@ -1,6 +1,8 @@
+import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import { NavLink, useParams } from "react-router-dom";
 import styled from "styled-components";
+import { helpHttp } from "../../../Helper/Helphttps";
 import { useReactQuery } from "../../../hooks/useReactQuery";
 import NotFundImage from "../../../images/ImagenNotFund.jpg";
 
@@ -107,12 +109,21 @@ const Recomendations = () => {
   const { id, watch } = useParams();
   const URL_IMAGE = "https://image.tmdb.org/t/p/w500";
   const API_URL = `https://api.themoviedb.org/3/${watch}/${id}/recommendations?api_key=c2b89afaf7bfa26140ce3d2bc5b5d295&page=1`;
-  const { data, status } = useReactQuery(`${API_URL}`, "recomendations");
+
+  const getRecomendation = async () => {
+    const response = await Promise.all([helpHttp().get(API_URL)]);
+    return response[0].results
+}
+ const { data , status } = useQuery(["recomendation"], getRecomendation);
+
+ 
 
   if (status === "loading") {
     return <p>Cargando</p>;
+  }else{
+    console.log(data)
   }
-  const newData = data.results.slice(0, 15);
+  const newData = data.slice(0, 15);
 
   return (
     <>
