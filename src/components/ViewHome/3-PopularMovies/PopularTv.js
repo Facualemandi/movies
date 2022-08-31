@@ -99,7 +99,7 @@ const PopularTv = () => {
     <>
         <Main>
         <SectionMovieCredits>
-          {data.results.map((movie) => (
+          {data.map((movie) => (
             <NavL key={movie.id} to={`/tv/${movie.id}/${movie.original_title}`}>
               <DivMovie>
                 <Img

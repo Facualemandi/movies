@@ -1,6 +1,8 @@
+import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
+import { helpHttp } from "../../../Helper/Helphttps";
 import { useReactQuery } from "../../../hooks/useReactQuery";
 
 const Job = styled.p`
@@ -18,13 +20,13 @@ const Main = styled.main`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   margin: 10px;
-  @media (min-width: 1080px){
+  @media (min-width: 1080px) {
     position: absolute;
     top: 270px;
     left: 390px;
     grid-template-columns: repeat(4, 1fr);
   }
-  @media (min-width: 1380px){
+  @media (min-width: 1380px) {
     grid-template-columns: repeat(5, 1fr);
   }
   section {
@@ -34,11 +36,18 @@ const Main = styled.main`
 
 const Credits = () => {
   const { id, watch } = useParams();
-  const API_URL = `https://api.themoviedb.org/3/${watch}/${id}/credits?api_key=c2b89afaf7bfa26140ce3d2bc5b5d295`
-  const { data, status } = useReactQuery(`${API_URL}`, 'credits')
+  const API_KEY = `https://api.themoviedb.org/3/${watch}/${id}/credits?api_key=c2b89afaf7bfa26140ce3d2bc5b5d295`;
+
+  const getCredits = async () => {
+    const response = await Promise.all([helpHttp().get(API_KEY)]);
+    return response[0];
+  };
+  const { data, status } = useQuery(["credits"], getCredits);
 
   if (status === "loading") {
     return <p>Cargando</p>;
+  } else {
+    console.log(data);
   }
 
   const director = data.crew.filter((el) => el.job === "Director");

@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 // import Loader from "../../Loader/Loader";
 import { NavLink } from "react-router-dom";
-import { useReactQuery } from "../../../hooks/useReactQuery";
 import NotFundImage from "../../../images/ImagenNotFund.jpg";
 import LoaderMovies from "../../../Loaders/LoaderMovies";
 import { useQuery } from "@tanstack/react-query";

@@ -1,9 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
-import { useReactQuery } from "../../../hooks/useReactQuery";
 import NotFundImage from "../../../images/ImagenNotFund.jpg";
 import LoaderMovies from '../../../Loaders/LoaderMovies';
+import { helpHttp } from "../../../Helper/Helphttps";
+import { useQuery } from "@tanstack/react-query";
 
 const SectionMovieCredits = styled.section`
   display: flex;
@@ -93,21 +94,25 @@ const Main = styled.main`
 
 const CoomingSoon = () => {
   const URL_IMAGE = "https://image.tmdb.org/t/p/w500";
-  const API_URL =
-    "https://api.themoviedb.org/3/movie/upcoming?api_key=c2b89afaf7bfa26140ce3d2bc5b5d295";
+  const API_URL = "https://api.themoviedb.org/3/movie/upcoming?api_key=c2b89afaf7bfa26140ce3d2bc5b5d295";
 
-  const { data, status } = useReactQuery(`${API_URL}`, "coomingsoon");
+    const getCoomingSoon = async () => {
+      const response = await Promise.all([helpHttp().get(API_URL)]);
+      return response[0].results
+  }
+  const { data, status } = useQuery(['comingsoon'], getCoomingSoon);
 
   if (status === "loading") {
     return <LoaderMovies />;
   }
+  
 
   return (
     <>
       <Main>
         <H3>Próximamente</H3>
         <SectionMovieCredits>
-          {data.results.map((movie) => (
+          {data.map((movie) => (
             <NavL key={movie.id} to={`/movie/${movie.id}/${movie.title}`}>
               <DivMovie>
                 <Img
