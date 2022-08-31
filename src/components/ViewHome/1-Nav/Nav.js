@@ -52,6 +52,12 @@ const Ul = styled.ul`
   z-index: 2500;
   height: 100vh;
 
+
+
+  @media(min-width: 780px){
+    max-height: 60px;
+  }
+
   @media (max-width: 780px) {
     margin: 0;
     position: fixed;

@@ -64,18 +64,24 @@ const ButtonOne = styled.button`
     value === true
       ? "linear-gradient(90deg, rgba(34, 193, 195, 1) 28%, rgba(0, 139, 207, 1) 100% )"
       : "  rgba(188, 188, 188, 0.296);"};
+      color: ${({value}) => value ? 'black' : 'white'};
 `;
 const ButtonTwo = styled.button`
   background: ${({ value }) =>
     value === true
       ? "linear-gradient(90deg, rgba(34, 193, 195, 1) 28%, rgba(0, 139, 207, 1) 100% )"
       : "rgba(188, 188, 188, 0.296);"};
+      color: ${({value}) => value ? 'black' : 'white'};
+
+
 `;
 const ButtonThree = styled.button`
   background: ${({ value }) =>
     value === true
       ? "linear-gradient(90deg, rgba(34, 193, 195, 1) 28%, rgba(0, 139, 207, 1) 100% )"
       : "rgba(188, 188, 188, 0.296);"};
+      color: ${({value}) => value ? 'black' : 'white'};
+
 `;
 
 const ImageMovie = () => {

@@ -1,13 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 // import Loader from "../../Loader/Loader";
-import { NavLink, useParams } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useReactQuery } from "../../../hooks/useReactQuery";
 import NotFundImage from "../../../images/ImagenNotFund.jpg";
-import LoaderMovies from '../../../Loaders/LoaderMovies';
-
-
-
+import LoaderMovies from "../../../Loaders/LoaderMovies";
+import { useQuery } from "@tanstack/react-query";
+import { helpHttp } from "../../../Helper/Helphttps";
 
 const SectionMovieCredits = styled.section`
   display: flex;
@@ -58,7 +57,7 @@ const Main = styled.main`
   @media (min-width: 1380px) {
     width: 1380px;
   }
-  
+
   ::-webkit-scrollbar {
     width: 8px;
     height: 10px;
@@ -84,19 +83,24 @@ const Main = styled.main`
 const PopularMovies = () => {
   // let X = Math.floor(Math.random() * 150);
   const URL_IMAGE = "https://image.tmdb.org/t/p/w500";
-  const API_URL ="https://api.themoviedb.org/3/movie/popular?api_key=c2b89afaf7bfa26140ce3d2bc5b5d295&page=1";
-  const { data, status } = useReactQuery(`${API_URL}`, "popular");
+  const API_URL = "https://api.themoviedb.org/3/movie/popular?api_key=c2b89afaf7bfa26140ce3d2bc5b5d295&page=1";
+
+
+  const getPopular = async () => {
+      const response = await Promise.all([helpHttp().get(API_URL)]);
+      return response[0].results
+  }
+  const { data , status } = useQuery(["popular"], getPopular)
 
   if (status === "loading") {
-    return <LoaderMovies/>
+    return <LoaderMovies />;
   }
 
   return (
     <>
       <Main>
-        
         <SectionMovieCredits>
-          {data.results.map((movie) => (
+          {data.map((movie) => (
             <NavL key={movie.id} to={`/movie/${movie.id}/${movie.original_title}`}>
               <DivMovie>
                 <Img
@@ -118,3 +122,6 @@ const PopularMovies = () => {
 };
 
 export default PopularMovies;
+
+
+// 

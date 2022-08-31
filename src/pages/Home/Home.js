@@ -14,7 +14,6 @@ const MorePopular = styled.h3`
   font-family: "Roboto", sans-serif;
   font-size: 26px;
   margin: 10px;
-
 `;
 
 const SectionPopular = styled.section`
@@ -51,7 +50,7 @@ const Select = styled.select`
     rgba(0, 139, 207, 1) 100%
   );
   color: black;
-  font-weight: bold;
+
 `;
 
 const Home = () => {

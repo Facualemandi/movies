@@ -1,11 +1,25 @@
-import React, { useState } from "react";
+import React from "react";
 import { NavLink, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { useReactQuery } from "../../hooks/useReactQuery";
 import ImageNFound from "../../images/ImagenNotFund.jpg";
 
 
+const ContainerAll = styled.section`
+   width: 100vw;
+   margin: auto;
 
+@media (min-width: 780px){
+   width: 780px;
+  }
+  @media (min-width: 1080px){
+  width: 1080px;
+
+}
+@media (min-width: 1380px){
+  width: 1380px
+}
+`
 const Img = styled.img`
   width: 70px;
   height: 100px;
@@ -54,7 +68,6 @@ const MovieSearch = () => {
   console.log(useParams())
   const URL_IMG = "https://image.tmdb.org/t/p/w500";
   const API_URL = `https://api.themoviedb.org/3/search/multi?api_key=c2b89afaf7bfa26140ce3d2bc5b5d295&query=${toSearch}`;
-
   const { data, status } = useReactQuery(`${API_URL}`, `${toSearch}`);
 
   if (status === "loading") {
@@ -71,9 +84,11 @@ const MovieSearch = () => {
   return (
     <>
       <main>
+        <ContainerAll>
+
         <Parraagraph>{person.length === 0 ? 'No hay personas con este nombre.' : 'Personas'}</Parraagraph>
           {person.map((person) => (
-            <NavL to={`/person/${person.id}/${person.name}`}>
+            <NavL key={person.id} to={`/person/${person.id}/${person.name}`}>
               <Img
                 alt={person.name}
                 src={`${ !person.profile_path ? ImageNFound : `${URL_IMG}${person.profile_path}` }`} />
@@ -90,7 +105,7 @@ const MovieSearch = () => {
     
     <Parraagraph>{movies.length === 0 ? 'No hay peliculas con este nombre.' : 'Peliculas'}</Parraagraph>
         {movies.map((movie) => (
-          <NavL to={`/movie/${movie.id}/${movie.name}`}>
+          <NavL key={movie.id} to={`/movie/${movie.id}/${movie.name}`}>
             <Img
               alt={movie.name}
               src={`${ !movie.poster_path ? ImageNFound : `${URL_IMG}${movie.poster_path}` }`} />
@@ -103,7 +118,7 @@ const MovieSearch = () => {
 
     <Parraagraph>{tv.length === 0 ? 'No hay TV shows con este nombre.' : 'TV Shows'}</Parraagraph>
         {tv.map((movie) => (
-          <NavL to={`/tv/${movie.id}/${movie.name}`}>
+          <NavL key={movie.id} to={`/tv/${movie.id}/${movie.name}`}>
             <Img
               alt={movie.name}
               src={`${ !movie.poster_path ? ImageNFound : `${URL_IMG}${movie.poster_path}` }`} />
@@ -114,7 +129,7 @@ const MovieSearch = () => {
           </NavL>
 
         ))}
-
+        </ContainerAll>
 
       </main>
     </>

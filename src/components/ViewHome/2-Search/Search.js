@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import { NavLink, useNavigate, useParams } from "react-router-dom";
+import { NavLink, useNavigate} from "react-router-dom";
 import styled from "styled-components";
 import Saul from "../../../images/saul.jpg";
-import Nav from "../1-Nav/Nav";
 
 const Main = styled.main`
   position: relative;
@@ -10,14 +9,14 @@ const Main = styled.main`
 
 const Img = styled.img`
   width: 100vw;
-  height: 300px;
+  height: 260px;
   z-index: 100;
   display: flex;
   margin: auto;
   margin-top: 60px;
 
-  @media (max-width: 320px) {
-    height: 340px;
+  @media (max-width: 420px) {
+    height: 310px;
   }
   @media (min-width: 780px) {
     width: 780px;
@@ -36,6 +35,9 @@ const H2 = styled.h2`
   font-size: 35px;
   @media (max-width: 380px) {
     font-size: 30px;
+  }
+  @media (min-width: 780px){
+    margin-top: 60px;
   }
   @media (min-width: 1080px) {
     font-size: 55px;
@@ -87,9 +89,10 @@ const FormSearch = styled.form`
   justify-content: space-between;
   align-items: center;
   background-color: white;
-  margin-top: 30px;
+  margin-top: 15px;
   border-radius: 30px;
   width: auto;
+
 `;
 
 const ToSearch = styled.p`
