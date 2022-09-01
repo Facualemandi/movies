@@ -1,38 +1,22 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { helpHttp } from "../../Helper/Helphttps";
 import { BiChevronRight } from "react-icons/bi";
 import { BiChevronLeft } from "react-icons/bi";
-import Providers from "../../components/ViewToNav/1-Providers/Providers";
-import ProvidersCountry from "../../components/ViewToNav/2 - ProvidersCountry/ProvidersCountry";
+import Nav from "../../components/ViewHome/1-Nav/Nav";
+import Footer from "../../components/ViewHome/7-Footer/Footer";
 
 const Img = styled.img`
   width: 91px;
   height: 141px;
   border-radius: 5px;
 `;
-const SectionPopular = styled.section`
+const SectionAll = styled.section`
   display: grid;
   grid-template-columns: repeat(1, 1fr);
   width: 95vw;
-`;
-const SectionOne = styled.section`
-  width: 230px;
-  display: flex;
-  box-shadow: 0 0 5px 0 rgba(137, 137, 137, 0.57);
-  border-radius: 10px;
-  width: 100%;
-  margin: 10px;
-  padding: 5px;
-
-  p {
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    margin-left: 15px;
-  }
 `;
 const Name = styled.p`
   font-family: "Heebo", sans-serif;
@@ -52,7 +36,6 @@ const OverView = styled.p`
   overflow-y: auto;
   margin-top: 10px;
 `;
-
 const SecionBtns = styled.section`
   display: flex;
   width: 95vw;
@@ -87,19 +70,50 @@ const H3 = styled.h3`
   font-size: 30px;
   font-weight: bold;
   margin: 10px;
+  margin-top: 15px;
 `;
-const SelectShow = styled.section`
+const NavL = styled(NavLink)`
+  text-decoration: none;
+  color: black;
+  width: 230px;
   display: flex;
-  flex-direction: column;
-  margin-top: 20px;
-  p{
-    margin: 0 0 5px 10px ;
-    font-family: 'Heebo', sans-serif;
+  box-shadow: 0 0 5px 0 rgba(137, 137, 137, 0.57);
+  border-radius: 10px;
+  width: 100%;
+  margin: 10px;
+  padding: 5px;
+
+  p {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-left: 15px;
+  }
+`;
+const SecondNav = styled(NavLink)`
+  height: auto;
+  min-height: 50px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  text-align: center;
+  background-color: #1f4c71;
+  color: white;
+  font-family: "Roboto", sans-serif;
+  width: 100vw;
+  text-decoration: none;
+
+  p {
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 `;
 
 const AllPopular = () => {
   const { watch } = useParams();
+  console.log(useParams());
   const URL_IMAGE = "https://image.tmdb.org/t/p/w500";
   const [page, setPage] = useState(1);
 
@@ -123,38 +137,36 @@ const AllPopular = () => {
 
   if (status === "loading") {
     return <p>cargando...</p>;
+  } else {
+    console.log(data);
   }
-
 
   return (
     <>
+      <SecondNav to={"/"}>
+        <p>Volver</p>
+      </SecondNav>
+
       <main>
         <H3> Popular {`${watch}`}</H3>
 
-        <SelectShow>
-          <p>Donde lo puedo mirar ?</p>
-          <Providers />
-          <ProvidersCountry/>
-        </SelectShow>
-
-
-        <SectionPopular>
+        <SectionAll>
           {data.map((obj) => (
-            <SectionOne key={obj.id}>
+            <NavL key={obj.id} to={`/${watch}/${obj.id}/${obj.title}`}>
               <Img
                 alt={obj.original_title}
                 src={`${URL_IMAGE}${obj.poster_path}`}
               />
               <div>
                 <div>
-                  <Name>{obj.original_title || obj.name}</Name>
-                  <Data>{obj.release_date || obj.first_air_date}</Data>
+                  <Name>{obj.original_title}</Name>
+                  <Data>{obj.release_date}</Data>
                 </div>
                 <OverView>{obj.overview}</OverView>
               </div>
-            </SectionOne>
+            </NavL>
           ))}
-        </SectionPopular>
+        </SectionAll>
 
         <SecionBtns>
           <Buttons onClick={previusPage}>
@@ -166,6 +178,7 @@ const AllPopular = () => {
           </Buttons>
         </SecionBtns>
       </main>
+      <Footer />
     </>
   );
 };

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { MdArrowDropDown } from "react-icons/md";
 import { AiOutlineCloseCircle } from "react-icons/ai";
@@ -16,19 +16,22 @@ import Footer from "../../components/ViewHome/7-Footer/Footer";
 import { useReactQuery } from "../../hooks/useReactQuery";
 
 
-const SecondNav = styled.nav`
+const SecondNav = styled(NavLink)`
   height: auto;
   min-height: 50px;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-end;
+  align-items: flex-end;
+  text-align: center;
   background-color: #1f4c71;
   color: white;
   font-family: "Roboto", sans-serif;
   width: 100vw;
+  text-decoration: none;
+
 
   p {
-    margin: 5px;
+    padding: 15px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -324,13 +327,10 @@ const Movie = () => {
    
   return (
     <>
-      {/* <Nav /> */}
 
-      <SecondNav>
-        <p> OverView <MdArrowDropDown /></p>
-        <p> Media <MdArrowDropDown /></p>
-        <p> Fandom <MdArrowDropDown /></p>
-        <p> Share <MdArrowDropDown /></p>
+
+      <SecondNav to={'/'}>
+         <p>Volver</p>
       </SecondNav>
 
       <Main>

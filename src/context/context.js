@@ -11,7 +11,6 @@ export const useTheContext = () => {
 export function ProvidersContex({children}){
 
     const [valueSelect, setValueSelect] = useState('AR');
-    const [idProvider, setIdProvider] = useState(0)
 
 
 
@@ -20,19 +19,10 @@ export function ProvidersContex({children}){
         console.log(valueSelect)
     }
 
-    const getIdProvider = (id, data) => {
-         const findProvides = data.find(obj => obj.provider_id === id);
-
-         if(findProvides.provider_id === id){
-            findProvides.check = true
-            console.log(findProvides)
-         }
-    }
-
 
     return(
 
-    <getProviders.Provider value={{changeValueSelect, valueSelect, getIdProvider}}>
+    <getProviders.Provider value={{changeValueSelect, valueSelect}}>
         {children}
     </getProviders.Provider>
     )

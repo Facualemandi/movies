@@ -119,6 +119,8 @@ const Recomendations = () => {
 
   if (status === "loading") {
     return <p>Cargando</p>;
+  }else{
+    console.log(data)
   }
   const newData = data.slice(0, 15);
 
@@ -137,8 +139,8 @@ const Recomendations = () => {
                       : NotFundImage
                   }
                 />
-              <NameMovie>{el.title}</NameMovie>
-              <Data>{el.release_date}</Data>
+              <NameMovie>{el.title || el.name}</NameMovie>
+              <Data>{el.release_date || el.first_air_date}</Data>
             </NavL>
           ))}
         </SectionMovieCredits>

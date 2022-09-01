@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { FaFacebookSquare } from "react-icons/fa";
 import { FaTwitterSquare } from "react-icons/fa";
@@ -8,6 +8,7 @@ import { FaInstagramSquare } from "react-icons/fa";
 import { useReactQuery } from "../../hooks/useReactQuery";
 import MovieCredits from "../../components/ViewPerson/2-MovieCredits/MovieCredits";
 import MoviesPerson from "../../components/ViewPerson/3-MoviePerson/MoviePerson";
+import Footer from "../../components/ViewHome/7-Footer/Footer";
 
 const Main = styled.main`
   width: 100vw;
@@ -108,6 +109,28 @@ const DivConatainer = styled.div`
   overflow-x: auto;
   margin: 10px;
 `;
+const SecondNav = styled(NavLink)`
+  height: auto;
+  min-height: 50px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  text-align: center;
+  background-color: #1f4c71;
+  color: white;
+  font-family: "Roboto", sans-serif;
+  width: 100vw;
+  text-decoration: none;
+
+
+  p {
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+`;
+
 
 const Person = () => {
   const URL_IMAGE = "https://image.tmdb.org/t/p/w500";
@@ -125,6 +148,11 @@ const Person = () => {
 
   return (
     <>
+      <SecondNav to={"/"}>
+        <p>Volver</p>
+      </SecondNav>
+      
+
       <Main>
         <ContainerPerson>
           <SectionPictureRedes>
@@ -157,8 +185,9 @@ const Person = () => {
           <MoviesPerson />
         </DivConatainer>
       </Main>
-      {/* 
-      <Footer /> */}
+      
+      <Footer />
+      
     </>
   );
 };
