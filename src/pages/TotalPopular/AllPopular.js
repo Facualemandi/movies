@@ -13,7 +13,7 @@ const Img = styled.img`
   height: 141px;
   border-radius: 5px;
 `;
-const SectionAll = styled.section`
+const SectionPopular = styled.section`
   display: grid;
   grid-template-columns: repeat(1, 1fr);
   width: 95vw;
@@ -138,7 +138,7 @@ const AllPopular = () => {
         </SelectShow>
 
 
-        <SectionAll>
+        <SectionPopular>
           {data.map((obj) => (
             <SectionOne key={obj.id}>
               <Img
@@ -154,7 +154,7 @@ const AllPopular = () => {
               </div>
             </SectionOne>
           ))}
-        </SectionAll>
+        </SectionPopular>
 
         <SecionBtns>
           <Buttons onClick={previusPage}>
