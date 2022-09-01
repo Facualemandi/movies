@@ -147,8 +147,8 @@ const AllPopular = () => {
               />
               <div>
                 <div>
-                  <Name>{obj.original_title}</Name>
-                  <Data>{obj.release_date}</Data>
+                  <Name>{obj.original_title || obj.name}</Name>
+                  <Data>{obj.release_date || obj.first_air_date}</Data>
                 </div>
                 <OverView>{obj.overview}</OverView>
               </div>

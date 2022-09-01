@@ -48,8 +48,6 @@ const ProvidersCountry = () => {
 
   if (status === "loading") {
     return <p>Carganado..</p>;
-  } else {
-    console.log(data);
   }
 
   return (

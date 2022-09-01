@@ -137,7 +137,7 @@ const Nav = () => {
 
             <p>TV show</p>
             <Ul>
-            <NavL to={'/total/movie'}><li>Tv</li></NavL>
+            <NavL to={'/total/tv'}><li>Tv</li></NavL>
               <li>Transmitiendo ahora</li>
               <li>On Tv</li>
               <li>Lo mas valorado</li>

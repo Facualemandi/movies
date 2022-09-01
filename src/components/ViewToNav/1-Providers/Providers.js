@@ -19,11 +19,11 @@ const SectionSelect = styled.select`
   margin: 0 0 10px 10px;
 `
 const Providers = () => {
-  const API_URL = `https://api.themoviedb.org/3/configuration/countries?api_key=c2b89afaf7bfa26140ce3d2bc5b5d295`;
+  const API_URL = `https://api.themoviedb.org/3/watch/providers/regions?api_key=c2b89afaf7bfa26140ce3d2bc5b5d295`;
 
   const getProviders = async () => {
     const response = await Promise.all([helpHttp().get(API_URL)]);
-    return response[0];
+    return response[0].results;
   };
 
   
