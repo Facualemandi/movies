@@ -49,9 +49,10 @@ const DivBurger = styled.div`
 
 const Ul = styled.ul`
   li {
-    font-family: "Roboto", sans-serif;
+    font-family: "Montserrat", sans-serif;
+    font-weight: lighter;
     margin: 10px;
-    margin-left: 40px;
+    margin-left: 30px;
     margin-top: 20px;
     color: white;
     text-decoration: none;
@@ -75,7 +76,6 @@ const SectionItemsNav = styled.section`
     font-family: "Roboto", sans-serif;
     font-weight: bold;
     color: white;
-    margin-top: 30px;
   }
 
   @media (min-width: 780px) {
@@ -111,9 +111,9 @@ const DivOne = styled.div`
 `;
 
 const NavL = styled(NavLink)`
-text-decoration: none;
-color: black;
-`
+  text-decoration: none;
+  color: black;
+`;
 
 const Nav = () => {
   const [isOpen, setOpen] = useState(false);
@@ -125,27 +125,44 @@ const Nav = () => {
 
         <SectionItemsNav value={isOpen}>
           <DivOne>
+            <p>Peliculas</p>
 
-              <p>Peliculas</p>
-            
             <Ul>
-             <NavL to={'/total/movie'}><li>Popular</li></NavL>
-             <NavL to={'/total/movie'}><li>Transmitiendo ahora</li></NavL>
-             <NavL to={'/total/movie'}><li>Próximamente</li></NavL>
-             <NavL to={'/total/movie'}><li>Lo mas valorado</li></NavL>
+              <NavL to={"/total/movie/popular"}>
+                <li>Popular</li>
+              </NavL>
+              <NavL to={"/total/movie/now_playing"}>
+                <li>Transmitiendo ahora</li>
+              </NavL>
+              <NavL to={"/total/movie/upcoming"}>
+                <li>Próximamente</li>
+              </NavL>
+              <NavL to={"/total/movie/top_rated"}>
+                <li>Lo mas valorado</li>
+              </NavL>
             </Ul>
 
             <p>TV show</p>
             <Ul>
-            <NavL to={'/total/tv'}><li>Tv</li></NavL>
-              <li>Transmitiendo ahora</li>
-              <li>On Tv</li>
-              <li>Lo mas valorado</li>
+              <NavL to={"/total/tv/popular"}>
+                <li>Tv popular</li>
+              </NavL>
+              <NavL to={"/total/tv/popular"}>
+                <li>Transmitiendo ahora</li>
+              </NavL>
+              <NavL to={"/total/tv/on_the_air"}>
+                <li>On Tv</li>
+              </NavL>
+              <NavL to={"/total/tv/top_rated"}>
+                <li>Lo mas valorado</li>
+              </NavL>
             </Ul>
 
-            <p>People</p>
+            <p>Personas</p>
             <Ul>
-              <li>Personas populares</li>
+              <NavL to={"/total/person/popular"}>
+                <li>Personas populares</li>
+              </NavL>
             </Ul>
           </DivOne>
         </SectionItemsNav>

@@ -4,7 +4,6 @@ import styled from "styled-components";
 import { FaFacebookSquare } from "react-icons/fa";
 import { FaTwitterSquare } from "react-icons/fa";
 import { FaInstagramSquare } from "react-icons/fa";
-
 import { useReactQuery } from "../../hooks/useReactQuery";
 import MovieCredits from "../../components/ViewPerson/2-MovieCredits/MovieCredits";
 import MoviesPerson from "../../components/ViewPerson/3-MoviePerson/MoviePerson";
@@ -119,7 +118,7 @@ const SecondNav = styled(NavLink)`
   background-color: #1f4c71;
   color: white;
   font-family: "Roboto", sans-serif;
-  width: 100vw;
+  width: 100%;
   text-decoration: none;
 
 

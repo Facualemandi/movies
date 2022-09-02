@@ -1,14 +1,13 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import Nav from '../../components/ViewHome/1-Nav/Nav'
-import Search from '../../components/ViewHome/2-Search/Search'
-import PopularMovies from '../../components/ViewHome/3-PopularMovies/PopularMovies'
-import PopularTv from '../../components/ViewHome/3-PopularMovies/PopularTv'
-import CoomingSoon from '../../components/ViewHome/4-CoomingSoon/CoomingSoon'
+import Nav from "../../components/ViewHome/1-Nav/Nav";
+import Search from "../../components/ViewHome/2-Search/Search";
+import PopularMovies from "../../components/ViewHome/3-PopularMovies/PopularMovies";
+import PopularTv from "../../components/ViewHome/3-PopularMovies/PopularTv";
+import CoomingSoon from "../../components/ViewHome/4-CoomingSoon/CoomingSoon";
 import Trailers from "../../components/ViewHome/5-Trailers/Trailers";
 import Footer from "../../components/ViewHome/7-Footer/Footer";
-import TrendingToday from '../../components/ViewHome/6-Trending/TrendingToday'
-
+import TrendingToday from "../../components/ViewHome/6-Trending/TrendingToday";
 
 const MorePopular = styled.h3`
   font-family: "Roboto", sans-serif;
@@ -50,20 +49,19 @@ const Select = styled.select`
     rgba(0, 139, 207, 1) 100%
   );
   color: black;
-
 `;
 
-const Home = () => {
 
+const Home = () => {
   const [valueSelect, setValueSelect] = useState("streaming");
-  
+
   const onChangeValue = (e) => {
     setValueSelect(e.target.value);
   };
 
   return (
     <>
-      <Nav/>
+      <Nav />
       <Search />
 
       <SectionPopular>
@@ -76,10 +74,10 @@ const Home = () => {
 
       {valueSelect === "streaming" && <PopularMovies />}
       {valueSelect === "tv" && <PopularTv />}
-      <CoomingSoon/>
-      <Trailers/>
-      <TrendingToday/>
-      <Footer/>
+      <CoomingSoon />
+      <Trailers />
+      <TrendingToday />
+      <Footer />
     </>
   );
 };

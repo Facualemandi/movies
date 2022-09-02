@@ -5,7 +5,6 @@ import styled from "styled-components";
 import { helpHttp } from "../../Helper/Helphttps";
 import { BiChevronRight } from "react-icons/bi";
 import { BiChevronLeft } from "react-icons/bi";
-import Nav from "../../components/ViewHome/1-Nav/Nav";
 import Footer from "../../components/ViewHome/7-Footer/Footer";
 
 const Img = styled.img`
@@ -17,6 +16,17 @@ const SectionAll = styled.section`
   display: grid;
   grid-template-columns: repeat(1, 1fr);
   width: 95vw;
+
+  @media (min-width: 780px){
+    width: 780px;
+    margin: auto;
+  }
+  @media (min-width: 1080px){
+    width: 1080px;
+  }
+  @media (min-width: 1380px){
+    width: 1380px;
+  }
 `;
 const Name = styled.p`
   font-family: "Heebo", sans-serif;
@@ -100,7 +110,7 @@ const SecondNav = styled(NavLink)`
   background-color: #1f4c71;
   color: white;
   font-family: "Roboto", sans-serif;
-  width: 100vw;
+  width: 100%;
   text-decoration: none;
 
   p {
@@ -111,8 +121,27 @@ const SecondNav = styled(NavLink)`
   }
 `;
 
+const SectionPerson = styled.section`
+  p {
+    font-family: "Heebo", sans-serif;
+    margin-top: 5px;
+  }
+  span {
+    font-family: "Heebo", sans-serif;
+    font-weight: lighter;
+    margin-left: 5px;
+    color: grey;
+  }
+
+  div {
+    font-family: "Heebo", sans-serif;
+    margin-left: 15px;
+    margin-top: 5px;
+  }
+`;
+
 const AllPopular = () => {
-  const { watch } = useParams();
+  const { watch, type } = useParams();
   console.log(useParams());
   const URL_IMAGE = "https://image.tmdb.org/t/p/w500";
   const [page, setPage] = useState(1);
@@ -126,7 +155,7 @@ const AllPopular = () => {
     console.log(page);
   };
 
-  const API_URL = `https://api.themoviedb.org/3/${watch}/popular?api_key=c2b89afaf7bfa26140ce3d2bc5b5d295&page=${page}`;
+  const API_URL = `https://api.themoviedb.org/3/${watch}/${type}?api_key=c2b89afaf7bfa26140ce3d2bc5b5d295&page=${page}`;
 
   const getAll = async () => {
     const response = await Promise.all([helpHttp().get(API_URL)]);
@@ -148,18 +177,38 @@ const AllPopular = () => {
       </SecondNav>
 
       <main>
-        <H3> Popular {`${watch}`}</H3>
 
         <SectionAll>
+          <H3> Popular {`${watch}`}</H3>
           {data.map((obj) => (
             <NavL key={obj.id} to={`/${watch}/${obj.id}/${obj.title}`}>
               <Img
                 alt={obj.original_title}
-                src={`${URL_IMAGE}${obj.poster_path}`}
+                src={`${URL_IMAGE}${obj.poster_path || obj.profile_path}`}
               />
               <div>
                 <div>
-                  <Name>{obj.original_title}</Name>
+                  <Name>{obj.original_title || obj.name}</Name>
+                  {watch === "person" ? (
+                    <SectionPerson>
+                      <p>
+                        Categoría: <span> {obj.known_for_department}</span>
+                      </p>
+                      <p>
+                        Popularidad: <span> {obj.popularity}</span>
+                      </p>
+                      <div>
+                        Conocida/o por:
+                        <span>
+                          {obj.known_for
+                            .map((el) => el.title || el.original_title)
+                            .join(", ")}
+                        </span>
+                      </div>
+                    </SectionPerson>
+                  ) : (
+                    ""
+                  )}
                   <Data>{obj.release_date}</Data>
                 </div>
                 <OverView>{obj.overview}</OverView>
@@ -184,3 +233,10 @@ const AllPopular = () => {
 };
 
 export default AllPopular;
+
+// {watch === 'person' ?
+// <section>
+// <p>Categoría: {obj.known_for_department}</p>
+// <p>Popularidad: {obj.popularity}</p>
+// <p>Conocida/o por: {obj.known_for.map(el => el.title || el.original_title).join(',')}</p>
+// </section> : ''}

@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import LogoFooter from '../../../images/LogoFooter.svg'
+import LogoFooter from "../../../images/LogoFooter.svg";
 const TheFooter = styled.footer`
-  width: 100vw;
+  width: 100%;
   background-color: #032541;
   height: auto;
   padding-bottom: 15px;
@@ -33,18 +33,16 @@ const Container = styled.section`
   grid-template-columns: repeat(2, 1fr);
   color: white;
   margin: 5px;
-  
-  p{
-      padding: 5px;
-      font-family: 'Roboto', sans-serif;
-    }
-    
-    @media (min-width:1080px){
-        grid-template-columns: repeat(4, 1fr);
-        margin: auto;
-        
+
+  p {
+    padding: 5px;
+    font-family: "Roboto", sans-serif;
   }
-  
+
+  @media (min-width: 1080px) {
+    grid-template-columns: repeat(4, 1fr);
+    margin: auto;
+  }
 `;
 const H3 = styled.h3`
   font-size: 24px;

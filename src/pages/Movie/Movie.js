@@ -21,17 +21,16 @@ const SecondNav = styled(NavLink)`
   min-height: 50px;
   display: flex;
   justify-content: flex-end;
-  align-items: flex-end;
-  text-align: center;
+  align-items: center;
   background-color: #1f4c71;
   color: white;
   font-family: "Roboto", sans-serif;
-  width: 100vw;
+  width: 100%;
   text-decoration: none;
 
 
   p {
-    padding: 15px;
+    margin-right: 15px;
     display: flex;
     justify-content: center;
     align-items: center;
