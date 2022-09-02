@@ -17,14 +17,14 @@ const SectionAll = styled.section`
   grid-template-columns: repeat(1, 1fr);
   width: 95vw;
 
-  @media (min-width: 780px){
+  @media (min-width: 780px) {
     width: 780px;
     margin: auto;
   }
-  @media (min-width: 1080px){
+  @media (min-width: 1080px) {
     width: 1080px;
   }
-  @media (min-width: 1380px){
+  @media (min-width: 1380px) {
     width: 1380px;
   }
 `;
@@ -64,6 +64,13 @@ const Buttons = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
+  background: rgb(34, 193, 195);
+  background: linear-gradient(
+    90deg,
+    rgba(34, 193, 195, 1) 28%,
+    rgba(0, 139, 207, 1) 100%
+  );
+  color: white;
 `;
 const IconsR = styled(BiChevronLeft)`
   width: 35px;
@@ -177,9 +184,15 @@ const AllPopular = () => {
       </SecondNav>
 
       <main>
-
         <SectionAll>
-          <H3> Popular {`${watch}`}</H3>
+          <H3>
+            {(watch === "person" && `Las personas mas populares`) ||
+              (type === "upcoming" && "Próximamente") ||
+              (type === "popular" && "Lo mas popular") ||
+              (type === "now_playing" && "Transmitiendo ahora") ||
+              (type === "top_rated" && `Lo mas valorado`)}
+          </H3>
+
           {data.map((obj) => (
             <NavL key={obj.id} to={`/${watch}/${obj.id}/${obj.title}`}>
               <Img
@@ -219,7 +232,6 @@ const AllPopular = () => {
 
         <SecionBtns>
           <Buttons onClick={previusPage}>
-            {" "}
             <IconsR /> Anterior
           </Buttons>
           <Buttons onClick={newPage}>

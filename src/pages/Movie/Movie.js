@@ -15,7 +15,6 @@ import Recomendations from "../../components/ViewMovie/6-Recomendation/Recomenda
 import Footer from "../../components/ViewHome/7-Footer/Footer";
 import { useReactQuery } from "../../hooks/useReactQuery";
 
-
 const SecondNav = styled(NavLink)`
   height: auto;
   min-height: 50px;
@@ -28,7 +27,6 @@ const SecondNav = styled(NavLink)`
   font-family: "Roboto", sans-serif;
   width: 100vw;
   text-decoration: none;
-
 
   p {
     padding: 15px;
@@ -189,7 +187,6 @@ const SectionDescription = styled.section`
 
     p {
       font-size: 18px;
-      font-weight: bold;
     }
 
     div {
@@ -206,6 +203,12 @@ const SectionDescription = styled.section`
       justify-content: center;
       align-items: center;
       text-align: center;
+      background: rgb(34, 193, 195);
+      background: linear-gradient(
+        90deg,
+        rgba(34, 193, 195, 1) 28%,
+        rgba(0, 139, 207, 1) 100%
+      );
     }
   }
 
@@ -305,20 +308,22 @@ const Movie = () => {
   const [setVideo, setSetVideo] = useState("");
   const [getTrailer, setGetTrailer] = useState(false);
 
-  let { id,watch } = useParams();
+  let { id, watch } = useParams();
 
   const API_URL = `https://api.themoviedb.org/3/${watch}/${id}?api_key=c2b89afaf7bfa26140ce3d2bc5b5d295&append_to_response=videos`;
   const URL_IMAGE = "https://image.tmdb.org/t/p/w500";
   const { data, status } = useReactQuery(`${API_URL}`, id);
 
   if (status === "loading") {
-    return <LoaderMovies/>;
+    return <LoaderMovies />;
   }
 
   const numerOne = Number.parseFloat(data.vote_average).toFixed(1);
 
   const openTrailer = () => {
-    const trailer = data.videos.results.find( (vid) => vid.name === "Official Trailer" || 'Official Trailer [Subtitled]');
+    const trailer = data.videos.results.find(
+      (vid) => vid.name === "Official Trailer" || "Official Trailer [Subtitled]"
+    );
     setGetTrailer(true);
     return setSetVideo(trailer.key);
   };
@@ -331,13 +336,10 @@ const Movie = () => {
     height: "450",
   };
 
-   
   return (
     <>
-
-
-      <SecondNav to={'/'}>
-         <p>Volver</p>
+      <SecondNav to={"/"}>
+        <p>Volver</p>
       </SecondNav>
 
       <Main>
@@ -353,7 +355,9 @@ const Movie = () => {
             <h3>{data.original_title}</h3>
 
             <div>
-              <button onClick={openTrailer}><IconTrailer /> Ver trailer</button>
+              <button onClick={openTrailer}>
+                <IconTrailer /> Ver trailer
+              </button>
               <div>
                 <p>{numerOne}</p> <ColorStar />
               </div>
@@ -368,16 +372,15 @@ const Movie = () => {
             ))}
           </SectionGenre>
           <OverView>{data.overview}</OverView>
-           
-           <Credits/>
+
+          <Credits />
         </SectionImg>
-        
-         <AllCredits/>
-        <Reviews/>
-        <ImageMovie/>
-        <Recomendations/>
+
+        <AllCredits />
+        <Reviews />
+        <ImageMovie />
+        <Recomendations />
       </Main>
-    
 
       <ContainerTrailer value={getTrailer}>
         <ClosedTrailer onClick={closedTrailer} />
@@ -385,7 +388,7 @@ const Movie = () => {
           {!getTrailer ? "" : <YouTube videoId={setVideo} opts={opts} />}
         </SectionTrailer>
       </ContainerTrailer>
-      <Footer/>
+      <Footer />
     </>
   );
 };

@@ -147,7 +147,7 @@ const Nav = () => {
               <NavL to={"/total/tv/popular"}>
                 <li>Tv popular</li>
               </NavL>
-              <NavL to={"/total/tv/popular"}>
+              <NavL to={"/total/tv/now_playing"}>
                 <li>Transmitiendo ahora</li>
               </NavL>
               <NavL to={"/total/tv/on_the_air"}>
