@@ -245,10 +245,3 @@ const AllPopular = () => {
 };
 
 export default AllPopular;
-
-// {watch === 'person' ?
-// <section>
-// <p>Categoría: {obj.known_for_department}</p>
-// <p>Popularidad: {obj.popularity}</p>
-// <p>Conocida/o por: {obj.known_for.map(el => el.title || el.original_title).join(',')}</p>
-// </section> : ''}

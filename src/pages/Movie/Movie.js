@@ -25,7 +25,7 @@ const SecondNav = styled(NavLink)`
   background-color: #1f4c71;
   color: white;
   font-family: "Roboto", sans-serif;
-  width: 100vw;
+  width: 100%;
   text-decoration: none;
 
   p {
