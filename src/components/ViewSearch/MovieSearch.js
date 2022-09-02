@@ -4,6 +4,7 @@ import { NavLink, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { helpHttp } from "../../Helper/Helphttps";
 import ImageNFound from "../../images/ImagenNotFund.jpg";
+import LoaderPopular from "../../Loaders/LoaderPopular";
 
 
 const ContainerAll = styled.section`
@@ -79,7 +80,7 @@ const MovieSearch = () => {
 
 
   if (status === "loading") {
-    return <p>Cargando</p>;
+    return <LoaderPopular/>
   }
 
   const movies = data.filter((el) => el.media_type === "movie");

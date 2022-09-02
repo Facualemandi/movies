@@ -101,7 +101,11 @@ const H3 = styled.h3`
   font-size: 22px;
   margin: 15px;
 `;
-
+const  NoRecomendation = styled.p`
+margin: 15px;
+font-family: "Roboto", sans-serif;
+font-weight: bold;
+`
 const Recomendations = () => {
   const { id, watch } = useParams();
   const URL_IMAGE = "https://image.tmdb.org/t/p/w500";
@@ -124,7 +128,7 @@ const Recomendations = () => {
         <H3>Recomendations</H3>
         <SectionMovieCredits>
           {newData.length === 0
-            ? "No hay recomendaciones disponibles."
+            ? <NoRecomendation>No hay recomendaciones disponibles.</NoRecomendation>
             : newData.map((el) => (
                 <NavL key={el.id} to={`/${watch}/${el.id}/${el.title}`}>
                   <Img
