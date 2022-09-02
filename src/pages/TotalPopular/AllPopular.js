@@ -145,22 +145,23 @@ const SectionPerson = styled.section`
     font-family: "Heebo", sans-serif;
     margin-left: 15px;
     margin-top: 5px;
+    div{
+      color: grey;
+    }
   }
 `;
 
 const AllPopular = () => {
   const { watch, type } = useParams();
-  console.log(useParams());
+  console.log(useParams())
   const URL_IMAGE = "https://image.tmdb.org/t/p/w500";
   const [page, setPage] = useState(1);
 
   const newPage = () => {
     setPage(page + 1);
-    console.log(page);
   };
   const previusPage = () => {
     setPage(page - 1);
-    console.log(page);
   };
 
   const API_URL = `https://api.themoviedb.org/3/${watch}/${type}?api_key=c2b89afaf7bfa26140ce3d2bc5b5d295&page=${page}`;
@@ -170,10 +171,12 @@ const AllPopular = () => {
     return response[0].results;
   };
 
-  const { data, status } = useQuery([`${page}`], getAll);
+  const { data, status } = useQuery([`${watch}`], getAll);
 
   if (status === "loading") {
     return <LoaderPopular/>
+  }else{
+      console.log(data)
   }
 
   return (
@@ -211,11 +214,9 @@ const AllPopular = () => {
                       </p>
                       <div>
                         Conocida/o por:
-                        <span>
-                          {obj.known_for
-                            .map((el) => el.title || el.original_title)
-                            .join(", ")}
-                        </span>
+                        <div>
+                          {obj.known_for.map((el) => el.title || el.original_title).join(", ")}
+                        </div>
                       </div>
                     </SectionPerson>
                   ) : (
