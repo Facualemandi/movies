@@ -76,7 +76,7 @@ const NavL = styled(NavLink)`
   color: black;
 `;
 const AllCredits = () => {
-  const { id, watch, name } = useParams();
+  const { id, watch } = useParams();
   const URL_IMAGE = "https://image.tmdb.org/t/p/w500";
   const API_URL = `https://api.themoviedb.org/3/${watch}/${id}/credits?api_key=c2b89afaf7bfa26140ce3d2bc5b5d295`;
   
@@ -89,7 +89,6 @@ const AllCredits = () => {
   if (status === "loading") {
     return <p>Cargando</p>;
   }
-
   const newData = data.cast.slice(0, 20);
 
 

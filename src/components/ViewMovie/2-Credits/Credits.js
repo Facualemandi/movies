@@ -3,7 +3,6 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { helpHttp } from "../../../Helper/Helphttps";
-import { useReactQuery } from "../../../hooks/useReactQuery";
 
 const Job = styled.p`
   font-family: "Roboto", sans-serif;
@@ -46,7 +45,7 @@ const Credits = () => {
 
   if (status === "loading") {
     return <p>Cargando</p>;
-  } 
+  }
 
   const director = data.crew.filter((el) => el.job === "Director");
   const screen = data.crew.filter((el) => el.job === "Screenplay");

@@ -21,16 +21,17 @@ const SecondNav = styled(NavLink)`
   min-height: 50px;
   display: flex;
   justify-content: flex-end;
-  align-items: center;
+  align-items: flex-end;
+  text-align: center;
   background-color: #1f4c71;
   color: white;
   font-family: "Roboto", sans-serif;
-  width: 100%;
+  width: 100vw;
   text-decoration: none;
 
 
   p {
-    margin-right: 15px;
+    padding: 15px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -170,7 +171,15 @@ const SectionDescription = styled.section`
     font-size: 20px;
     font-family: "Roboto", sans-serif;
     background-color: white;
-    border: 1px solid black;
+    background: rgb(34, 193, 195);
+    background: linear-gradient(
+      90deg,
+      rgba(34, 193, 195, 1) 28%,
+      rgba(0, 139, 207, 1) 100%
+    );
+    border-radius: 10px;
+    border: none;
+    color: white;
   }
 
   div {
@@ -310,7 +319,6 @@ const Movie = () => {
 
   const openTrailer = () => {
     const trailer = data.videos.results.find( (vid) => vid.name === "Official Trailer" || 'Official Trailer [Subtitled]');
-    console.log(trailer)
     setGetTrailer(true);
     return setSetVideo(trailer.key);
   };
