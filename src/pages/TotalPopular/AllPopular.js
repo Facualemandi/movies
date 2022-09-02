@@ -6,6 +6,7 @@ import { helpHttp } from "../../Helper/Helphttps";
 import { BiChevronRight } from "react-icons/bi";
 import { BiChevronLeft } from "react-icons/bi";
 import Footer from "../../components/ViewHome/7-Footer/Footer";
+import LoaderPopular from "../../Loaders/LoaderPopular";
 
 const Img = styled.img`
   width: 91px;
@@ -172,9 +173,7 @@ const AllPopular = () => {
   const { data, status } = useQuery([`${page}`], getAll);
 
   if (status === "loading") {
-    return <p>cargando...</p>;
-  } else {
-    console.log(data);
+    return <LoaderPopular/>
   }
 
   return (

@@ -14,6 +14,7 @@ import ImageMovie from "../../components/ViewMovie/5-ImageMovie/ImageMovie";
 import Recomendations from "../../components/ViewMovie/6-Recomendation/Recomendation";
 import Footer from "../../components/ViewHome/7-Footer/Footer";
 import { useReactQuery } from "../../hooks/useReactQuery";
+import LoaderDescript from "../../Loaders/LoaderDescript";
 
 const SecondNav = styled(NavLink)`
   height: auto;
@@ -315,9 +316,7 @@ const Movie = () => {
   const { data, status } = useReactQuery(`${API_URL}`, id);
 
   if (status === "loading") {
-    return <LoaderMovies />;
-  }else{
-    console.log(data)
+    return <LoaderDescript/>;
   }
 
   const numerOne = Number.parseFloat(data.vote_average).toFixed(1);

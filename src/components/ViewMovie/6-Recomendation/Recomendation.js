@@ -10,7 +10,6 @@ const SectionMovieCredits = styled.section`
   overflow-x: auto;
   margin: auto;
 
-
   ::-webkit-scrollbar {
     width: 8px;
     height: 10px;
@@ -64,7 +63,7 @@ const Data = styled.p`
   font-size: 14px;
   font-family: "Roboto", sans-serif;
   margin-top: 5px;
-`
+`;
 const Main = styled.main`
   @media (min-width: 780px) {
     width: 780px;
@@ -103,7 +102,6 @@ const H3 = styled.h3`
   margin: 15px;
 `;
 
-
 const Recomendations = () => {
   const { id, watch } = useParams();
   const URL_IMAGE = "https://image.tmdb.org/t/p/w500";
@@ -111,11 +109,9 @@ const Recomendations = () => {
 
   const getRecomendation = async () => {
     const response = await Promise.all([helpHttp().get(API_URL)]);
-    return response[0].results
-}
- const { data , status } = useQuery(["recomendation"], getRecomendation);
-
- 
+    return response[0].results;
+  };
+  const { data, status } = useQuery(["recomendation"], getRecomendation);
 
   if (status === "loading") {
     return <p>Cargando</p>;
@@ -127,20 +123,22 @@ const Recomendations = () => {
       <Main>
         <H3>Recomendations</H3>
         <SectionMovieCredits>
-          {newData.map((el) => (
-            <NavL key={el.id} to={`/${watch}/${el.id}/${el.title}`}>
-              <Img
-                  alt={el.original_title}
-                  src={
-                    el.poster_path
-                      ? `${URL_IMAGE}${el.poster_path}`
-                      : NotFundImage
-                  }
-                />
-              <NameMovie>{el.title || el.name}</NameMovie>
-              <Data>{el.release_date || el.first_air_date}</Data>
-            </NavL>
-          ))}
+          {newData.length === 0
+            ? "No hay recomendaciones disponibles."
+            : newData.map((el) => (
+                <NavL key={el.id} to={`/${watch}/${el.id}/${el.title}`}>
+                  <Img
+                    alt={el.original_title}
+                    src={
+                      el.poster_path
+                        ? `${URL_IMAGE}${el.poster_path}`
+                        : NotFundImage
+                    }
+                  />
+                  <NameMovie>{el.title || el.name}</NameMovie>
+                  <Data>{el.release_date || el.first_air_date}</Data>
+                </NavL>
+              ))}
         </SectionMovieCredits>
       </Main>
     </>
