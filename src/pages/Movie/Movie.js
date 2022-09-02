@@ -316,6 +316,8 @@ const Movie = () => {
 
   if (status === "loading") {
     return <LoaderMovies />;
+  }else{
+    console.log(data)
   }
 
   const numerOne = Number.parseFloat(data.vote_average).toFixed(1);
@@ -352,7 +354,7 @@ const Movie = () => {
           </DivImagePoster>
 
           <SectionDescription>
-            <h3>{data.original_title}</h3>
+            <h3>{data.original_title || data.name}</h3>
 
             <div>
               <button onClick={openTrailer}>
