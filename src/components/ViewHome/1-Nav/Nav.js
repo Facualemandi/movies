@@ -46,8 +46,8 @@ const SectionBurgerBtn = styled.section`
 const SectionItemsNav = styled.section`
   position: fixed;
   z-index: 2000;
-  width: 50vw;
   height: 100vh;
+  width: 70vw;
   right: 0px;
   transform: ${({ value }) => (value ? "translateX(0%)" : "translateX(100%)")};
   transition: 0.5s;
@@ -218,7 +218,7 @@ const Nav = () => {
               <UlContainer>
                 <p>Personas</p>
                 <UlTwoMovie>
-                  <NavL to={"/total/person/popular"}>
+                  <NavL to={"/popular/popular"}>
                     <li>Más populares</li>
                   </NavL>
                 </UlTwoMovie>

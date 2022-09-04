@@ -1,12 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
-import { NavLink, useParams } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { helpHttp } from "../../Helper/Helphttps";
 import { BiChevronRight } from "react-icons/bi";
 import { BiChevronLeft } from "react-icons/bi";
 import Footer from "../../components/ViewHome/7-Footer/Footer";
-import LoaderPopular from "../../Loaders/LoaderPopular";
 
 const Img = styled.img`
   width: 91px;
@@ -173,10 +172,21 @@ const SectionPerson = styled.section`
   }
 `;
 
-const AllPopular = () => {
-  const { watch, type } = useParams();
+const PopularPeople = () => {
+    const [page, setPage] = useState(1);
+  const API_URL = `https://api.themoviedb.org/3/person/popular?api_key=c2b89afaf7bfa26140ce3d2bc5b5d295&page=${page}`;
   const URL_IMAGE = "https://image.tmdb.org/t/p/w500";
-  const [page, setPage] = useState(1);
+  
+
+  const getPopularPeople = async () => {
+    const response = await Promise.all([helpHttp().get(API_URL)]);
+    return response[0].results;
+  };
+  const { data, status } = useQuery(["PopularPeople"], getPopularPeople);
+
+  if (status === "loading") {
+    return <p>cargando</p>;
+  }
 
   const newPage = () => {
     setPage(page + 1);
@@ -185,18 +195,6 @@ const AllPopular = () => {
     setPage(page - 1);
   };
 
-  const API_URL = `https://api.themoviedb.org/3/${watch}/${type}?api_key=c2b89afaf7bfa26140ce3d2bc5b5d295&page=${page}`;
-
-  const getAll = async () => {
-    const response = await Promise.all([helpHttp().get(API_URL)]);
-    return response[0].results;
-  };
-
-  const { data, status } = useQuery([`${page}`], getAll);
-
-  if (status === "loading") {
-    return <LoaderPopular />;
-  }
   return (
     <>
       <SecondNav to={"/"}>
@@ -205,16 +203,8 @@ const AllPopular = () => {
 
       <main>
         <SectionAll>
-          <H3>
-             {(watch === "person" && `Las personas mas populares`) ||
-              (type === "upcoming" && "Próximamente") ||
-              (type === "popular" && "Lo mas popular") ||
-              (type === "now_playing" && "Transmitiendo ahora") ||
-              (type === "top_rated" && `Lo mas valorado`)}
-          </H3>
-
           {data.map((obj) => (
-            <NavL key={obj.id} to={`/${watch}/${obj.id}/${obj.title}`}>
+            <NavL key={obj.id} to={`/person/${obj.id}/${obj.title}`}>
               <Img
                 alt={obj.original_title}
                 src={`${URL_IMAGE}${obj.poster_path || obj.profile_path}`}
@@ -222,26 +212,24 @@ const AllPopular = () => {
               <div>
                 <div>
                   <Name>{obj.original_title || obj.name}</Name>
-                  {watch === "person" ? (
-                    <SectionPerson>
-                      <p>
-                        Categoría: <span> {obj.known_for_department}</span>
-                      </p>
-                      <p>
-                        Popularidad: <span> {obj.popularity}</span>
-                      </p>
+
+                  <SectionPerson>
+                    <p>
+                      Categoría: <span> {obj.known_for_department}</span>
+                    </p>
+                    <p>
+                      Popularidad: <span> {obj.popularity}</span>
+                    </p>
+                    <div>
+                      Conocida/o por:
                       <div>
-                        Conocida/o por:
-                        <div>
-                          {obj.known_for
-                            .map((el) => el.title || el.original_title)
-                            .join(", ")}
-                        </div>
+                        {obj.known_for
+                          .map((el) => el.title || el.original_title)
+                          .join(", ")}
                       </div>
-                    </SectionPerson>
-                  ) : (
-                    ""
-                  )}
+                    </div>
+                  </SectionPerson>
+
                   <Data>{obj.release_date}</Data>
                 </div>
                 <OverView>{obj.overview}</OverView>
@@ -260,8 +248,9 @@ const AllPopular = () => {
         </SecionBtns>
       </main>
       <Footer />
+      
     </>
   );
 };
 
-export default AllPopular;
+export default PopularPeople;

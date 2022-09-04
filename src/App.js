@@ -8,6 +8,7 @@ import Person from "./pages/Person/Person";
 import SearchMovie from "./pages/SearchMovie/SearchMovie";
 import ScrollToTop from "./ScrollToTop/ScrollToTop";
 import { ProvidersContex } from "./context/context";
+import PopularPeople from "./pages/PopularPeople/PopularPeople";
 
 function App() {
   const queryClient = new QueryClient();
@@ -24,6 +25,7 @@ function App() {
             <Route path="/:toSearch" element={<SearchMovie />} />
             {/* Rutas desde el nav */}
             <Route path="/total/:watch/:type" element={<AllPopular />} />
+            <Route path="/popular/:type" element={<PopularPeople/>} />
             {/* <Route path="/total/:watch/:type" element={<AllPopular />} /> */}
           </Routes>
           <ReactQueryDevtools initialIsOpen={false} />
