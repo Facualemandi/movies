@@ -219,6 +219,13 @@ const SectionDescription = styled.section`
     width: max-content;
     left: 400px;
     margin: 0 auto;
+ 
+    div{
+      button{
+        cursor: pointer;
+      }
+    }
+    
   }
 `;
 
