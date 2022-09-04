@@ -275,6 +275,9 @@ const OverView = styled.p`
   font-size: 18px;
   font-family: "Roboto", sans-serif;
 
+  @media (max-width: 400px){
+    font-size: 15px;
+  }
   @media (min-width: 1080px) {
     position: absolute;
     top: 100px;

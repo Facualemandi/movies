@@ -10,6 +10,7 @@ const Img = styled.img`
   height: 200px;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
+  max-width: 200px;
 `;
 
 const Main = styled.main`
@@ -42,6 +43,7 @@ const Character = styled.p`
   font-family: "Montserrat", sans-serif;
   font-weight: lighter;
   width: auto;
+  max-width: 180px;
 `;
 
 const TopCast = styled.h3`

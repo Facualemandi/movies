@@ -7,12 +7,18 @@ import { helpHttp } from "../../../Helper/Helphttps";
 const Job = styled.p`
   font-family: "Roboto", sans-serif;
   font-size: 16px;
+  @media (max-width: 400px){
+    font-size: 12px;
+  }
 `;
 
 const Name = styled.p`
   font-family: "Roboto", sans-serif;
   font-size: 20px;
   font-weight: bold;
+  @media (max-width: 400px){
+    font-size: 14px;
+  }
 `;
 
 const Main = styled.main`
