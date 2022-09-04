@@ -20,9 +20,8 @@ const Main = styled.main`
 const DivOne = styled.div`
   width: 100vw;
   height: 250px;
-  background-color: grey;
   position: relative;
-  background-color: rgba(82, 82, 82, 0.287);
+  background-color: rgba(215, 215, 215, 0.526);
 
   @media (min-width: 780px) {
     width: 780px;
@@ -44,7 +43,7 @@ const DivTwo = styled.div`
   left: 30px;
   position: absolute;
   border-radius: 10px;
-  background-color: rgba(82, 82, 82, 0.287);
+  background-color: rgba(215, 215, 215, 0.526);
 `;
 
 const DivThree = styled.div`
@@ -71,27 +70,24 @@ const Img = styled.img`
 const P1 = styled.p`
   width: 150px;
   height: 15px;
-  background-color: grey;
   margin: 5px;
   border-radius: 5px;
-  background-color: rgba(82, 82, 82, 0.287);
+  background-color: rgba(215, 215, 215, 0.526);
   margin-top: 50px;
 `;
 const P2 = styled.p`
   width: 170px;
   height: 15px;
-  background-color: grey;
   margin: 5px;
   border-radius: 5px;
-  background-color: rgba(82, 82, 82, 0.287);
+  background-color: rgba(215, 215, 215, 0.526);
 `;
 const P3 = styled.p`
   width: 90vw;
   height: 150px;
-  background-color: grey;
   margin: 5px;
   border-radius: 10px;
-  background-color: rgba(82, 82, 82, 0.287);
+  background-color: rgba(215, 215, 215, 0.526);
 
   @media (min-width: 780px) {
     width: 780px;
@@ -107,16 +103,15 @@ const P3 = styled.p`
 const P4 = styled.p`
   width: 150px;
   height: 15px;
-  background-color: grey;
   margin: 5px;
   border-radius: 5px;
-  background-color: rgba(82, 82, 82, 0.287);
+  background-color: rgba(215, 215, 215, 0.526);
 `;
 const Section = styled.div`
   height: 230px;
   border-radius: 10px;
   width: 160px;
-  background-color: rgba(215, 215, 215, 0.296);
+  background-color: rgba(215, 215, 215, 0.526);
   box-shadow: 0px 0px 5px 0px rgba(141, 141, 141, 0.493);
   display: flex;
   justify-content: center;
@@ -131,9 +126,8 @@ const Container = styled.section`
 const Parragraph = styled.p`
   width: 100px;
   height: 15px;
-  background-color: black;
   margin-top: 15px;
-  background-color: rgba(215, 215, 215, 0.296);
+  background-color: rgba(215, 215, 215, 0.526);
 `;
 
 const ContainerSection = styled.section`
@@ -148,9 +142,8 @@ const ContainerSection = styled.section`
 const Data = styled.p`
   width: 70px;
   height: 15px;
-  background-color: black;
   margin-top: 10px;
-  background-color: rgba(215, 215, 215, 0.296);
+  background-color: rgba(215, 215, 215, 0.526);
 `;
 const IconImg = styled(BsFillImageFill)`
   width: 100px;
