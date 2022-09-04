@@ -43,10 +43,21 @@ const P2 = styled.p`
   margin: 15px;
   border-radius: 3px;
 `;
-
+const Div = styled.div`
+  @media (min-width: 780px) {
+    width: 780px;
+    margin: auto;
+  }
+  @media (min-width: 1080px) {
+    width: 1080px;
+  }
+  @media (min-width: 1380px) {
+    width: 1380px;
+  }
+`;
 const LoaderPerson = () => {
   return (
-    <div>
+    <Div>
       <Img alt="" src={IMG} />
 
       <DivC>
@@ -64,7 +75,7 @@ const LoaderPerson = () => {
       <P2></P2>
       <P1></P1>
       <P2></P2>
-    </div>
+    </Div>
   );
 };
 
