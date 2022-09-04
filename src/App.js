@@ -26,7 +26,6 @@ function App() {
             {/* Rutas desde el nav */}
             <Route path="/total/:watch/:type" element={<AllPopular />} />
             <Route path="/person/:type" element={<PopularPeople/>} />
-            {/* <Route path="/total/:watch/:type" element={<AllPopular />} /> */}
           </Routes>
           <ReactQueryDevtools initialIsOpen={false} />
         </QueryClientProvider>

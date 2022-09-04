@@ -6,6 +6,7 @@ import { helpHttp } from "../../Helper/Helphttps";
 import { BiChevronRight } from "react-icons/bi";
 import { BiChevronLeft } from "react-icons/bi";
 import Footer from "../../components/ViewHome/7-Footer/Footer";
+import LoaderPopular from "../../Loaders/LoaderPopular";
 
 const Img = styled.img`
   width: 91px;
@@ -95,13 +96,7 @@ const IconsL = styled(BiChevronRight)`
   font-size: 25px;
   font-weight: bold;
 `;
-const H3 = styled.h3`
-  font-family: "Roboto", sans-serif;
-  font-size: 30px;
-  font-weight: bold;
-  margin: 10px;
-  margin-top: 15px;
-`;
+
 const NavL = styled(NavLink)`
   text-decoration: none;
   color: black;
@@ -189,7 +184,7 @@ const PopularPeople = () => {
   const { data, status } = useQuery([`${pageQuery}`], getPopularPeople);
 
   if (status === "loading") {
-    return <p>cargando</p>;
+    return <LoaderPopular/>;
   }
 
   const newPage = () => {

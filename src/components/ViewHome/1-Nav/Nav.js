@@ -2,7 +2,6 @@ import Hamburger from "hamburger-react";
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
-import TMDB from "../../../images/tmbdlogo.svg";
 
 const TheNav = styled.nav`
   width: 100vw;
