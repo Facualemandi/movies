@@ -55,7 +55,6 @@ const ContainerSection = styled.section`
 const Data = styled.p`
   width: 70px;
   height: 15px;
-  background-color: black;
   margin-top: 10px;
   background-color: rgba(215, 215, 215, 0.526);
 `;
