@@ -121,21 +121,19 @@ const UlTwoMovie = styled.li`
     display: none;
     width: 200px;
     background-color: #032541;
-    font-family: 'Heebo', sans-serif;
+    font-family: "Heebo", sans-serif;
     padding: 5px;
     cursor: pointer;
     li {
       margin-top: 30px;
       color: white;
       list-style: none;
-      &:hover{
+      &:hover {
         color: grey;
         width: 100%;
       }
-
     }
   }
-
 `;
 
 const UlContainer = styled.p`
@@ -163,10 +161,13 @@ const UlContainer = styled.p`
 
   @media (min-width: 780px) {
     margin-top: 10px;
-    p{
+    p {
       cursor: pointer;
     }
   }
+`;
+const NavL = styled(NavLink)`
+  text-decoration: none;
 `;
 
 const Nav = () => {
@@ -181,27 +182,45 @@ const Nav = () => {
               <UlContainer>
                 <p>Peliculas</p>
                 <UlTwoMovie>
-                  <li>Popular</li>
-                  <li>Transmitiendo ahora</li>
-                  <li>Próximamente</li>
-                  <li>Lo mas valorado</li>
+                  <NavL to={"/total/movie/popular"}>
+                    <li>Popular</li>
+                  </NavL>
+                  <NavL to={"/total/movie/now_playing"}>
+                    <li>Transmitiendo ahora</li>
+                  </NavL>
+                  <NavL to={"/total/movie/upcoming"}>
+                    <li>Próximamente</li>
+                  </NavL>
+                  <NavL to={"/total/movie/top_rated"}>
+                    <li>Lo mas valorado</li>
+                  </NavL>
                 </UlTwoMovie>
               </UlContainer>
 
               <UlContainer>
                 <p>TV Show</p>
                 <UlTwoMovie>
-                  <li>Popular</li>
-                  <li>Transmitiendo ahora</li>
-                  <li>Próximamente</li>
-                  <li>Lo mas valorado</li>
+                  <NavL to={"/total/tv/popular"}>
+                    <li>Popular</li>
+                  </NavL>
+                  <NavL to={"/total/tv/airing_today"}>
+                    <li>Transmitiendo ahora</li>
+                  </NavL>
+                  <NavL to={"/total/tv/on_the_air"}>
+                    <li>On Tv</li>
+                  </NavL>
+                  <NavL to={"/total/tv/top_rated"}>
+                    <li>Lo mas valorado</li>
+                  </NavL>
                 </UlTwoMovie>
               </UlContainer>
 
               <UlContainer>
                 <p>Personas</p>
                 <UlTwoMovie>
-                  <li>Más populares</li>
+                  <NavL to={"/total/person/populr"}>
+                    <li>Más populares</li>
+                  </NavL>
                 </UlTwoMovie>
               </UlContainer>
             </ContainerUl>
