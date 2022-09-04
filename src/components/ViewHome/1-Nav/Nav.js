@@ -218,7 +218,7 @@ const Nav = () => {
               <UlContainer>
                 <p>Personas</p>
                 <UlTwoMovie>
-                  <NavL to={"/total/person/populr"}>
+                  <NavL to={"/total/person/popular"}>
                     <li>Más populares</li>
                   </NavL>
                 </UlTwoMovie>

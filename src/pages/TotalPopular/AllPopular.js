@@ -52,6 +52,16 @@ const SecionBtns = styled.section`
   width: 95vw;
   margin: auto;
   margin-bottom: 15px;
+
+  @media (min-width: 780px) {
+    width: 780px;
+  }
+  @media (min-width: 1080px) {
+    width: 1080px;
+  }
+  @media (min-width: 1380px) {
+    width: 1380px;
+  }
 `;
 const Buttons = styled.button`
   width: 100%;
@@ -72,6 +82,9 @@ const Buttons = styled.button`
     rgba(0, 139, 207, 1) 100%
   );
   color: white;
+  @media (min-width: 780px) {
+    cursor: pointer;
+  }
 `;
 const IconsR = styled(BiChevronLeft)`
   width: 35px;
@@ -106,6 +119,15 @@ const NavL = styled(NavLink)`
     justify-content: flex-start;
     align-items: flex-start;
     margin-left: 15px;
+  }
+  @media (min-width: 780px) {
+    width: 780px;
+  }
+  @media (min-width: 1080px) {
+    width: 1080px;
+  }
+  @media (min-width: 1380px) {
+    width: 1380px;
   }
 `;
 const SecondNav = styled(NavLink)`
@@ -145,7 +167,7 @@ const SectionPerson = styled.section`
     font-family: "Heebo", sans-serif;
     margin-left: 15px;
     margin-top: 5px;
-    div{
+    div {
       color: grey;
     }
   }
@@ -153,7 +175,6 @@ const SectionPerson = styled.section`
 
 const AllPopular = () => {
   const { watch, type } = useParams();
-  console.log(useParams())
   const URL_IMAGE = "https://image.tmdb.org/t/p/w500";
   const [page, setPage] = useState(1);
 
@@ -171,13 +192,12 @@ const AllPopular = () => {
     return response[0].results;
   };
 
-  const { data, status } = useQuery([`${watch}`], getAll);
+  const { data, status, isFetching } = useQuery([`${page}`], getAll, {cacheTime: 1000});
 
   if (status === "loading") {
-    return <LoaderPopular/>
-  }else{
-      console.log(data)
+    return <LoaderPopular />;
   }
+  console.log({isFetching})
 
   return (
     <>
@@ -215,7 +235,9 @@ const AllPopular = () => {
                       <div>
                         Conocida/o por:
                         <div>
-                          {obj.known_for.map((el) => el.title || el.original_title).join(", ")}
+                          {obj.known_for
+                            .map((el) => el.title || el.original_title)
+                            .join(", ")}
                         </div>
                       </div>
                     </SectionPerson>
