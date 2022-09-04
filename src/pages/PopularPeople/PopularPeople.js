@@ -182,7 +182,11 @@ const PopularPeople = () => {
     const response = await Promise.all([helpHttp().get(API_URL)]);
     return response[0].results;
   };
-  const { data, status } = useQuery(["PopularPeople"], getPopularPeople);
+
+  let pageQuery = `pagePople ${page}`;
+  console.log(pageQuery)
+
+  const { data, status } = useQuery([`${pageQuery}`], getPopularPeople);
 
   if (status === "loading") {
     return <p>cargando</p>;

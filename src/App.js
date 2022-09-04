@@ -25,7 +25,7 @@ function App() {
             <Route path="/:toSearch" element={<SearchMovie />} />
             {/* Rutas desde el nav */}
             <Route path="/total/:watch/:type" element={<AllPopular />} />
-            <Route path="/popular/:type" element={<PopularPeople/>} />
+            <Route path="/person/:type" element={<PopularPeople/>} />
             {/* <Route path="/total/:watch/:type" element={<AllPopular />} /> */}
           </Routes>
           <ReactQueryDevtools initialIsOpen={false} />

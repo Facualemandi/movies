@@ -185,6 +185,7 @@ const AllPopular = () => {
     setPage(page - 1);
   };
 
+
   const API_URL = `https://api.themoviedb.org/3/${watch}/${type}?api_key=c2b89afaf7bfa26140ce3d2bc5b5d295&page=${page}`;
 
   const getAll = async () => {
