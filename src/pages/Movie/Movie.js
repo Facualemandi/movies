@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import { NavLink, useParams } from "react-router-dom";
 import styled from "styled-components";
-import { MdArrowDropDown } from "react-icons/md";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import { AiOutlinePlaySquare } from "react-icons/ai";
 import { AiFillStar } from "react-icons/ai";
 import YouTube from "react-youtube";
-import LoaderMovies from "../../Loaders/LoaderMovies";
 import Credits from "../../components/ViewMovie/2-Credits/Credits";
 import AllCredits from "../../components/ViewMovie/3-AllCredits/AllCredits";
 import Reviews from "../../components/ViewMovie/4-Reviews/Reviews";
@@ -15,6 +13,7 @@ import Recomendations from "../../components/ViewMovie/6-Recomendation/Recomenda
 import Footer from "../../components/ViewHome/7-Footer/Footer";
 import { useReactQuery } from "../../hooks/useReactQuery";
 import LoaderDescript from "../../Loaders/LoaderDescript";
+import { motion } from "framer-motion";
 
 const SecondNav = styled(NavLink)`
   height: auto;
@@ -219,13 +218,12 @@ const SectionDescription = styled.section`
     width: max-content;
     left: 400px;
     margin: 0 auto;
- 
-    div{
-      button{
+
+    div {
+      button {
         cursor: pointer;
       }
     }
-    
   }
 `;
 
@@ -323,7 +321,7 @@ const Movie = () => {
   const { data, status } = useReactQuery(`${API_URL}`, id);
 
   if (status === "loading") {
-    return <LoaderDescript/>;
+    return <LoaderDescript />;
   }
 
   const numerOne = Number.parseFloat(data.vote_average).toFixed(1);
@@ -350,52 +348,59 @@ const Movie = () => {
         <p>Volver</p>
       </SecondNav>
 
-      <Main>
-        <SectionImg>
-          <ImgPoster alt="" src={`${URL_IMAGE}${data.poster_path}`} />
+      <motion.section
+        section
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0, transition: { duration: 0.6 } }}
+      >
+        <Main>
+          <SectionImg>
+            <ImgPoster alt="" src={`${URL_IMAGE}${data.poster_path}`} />
 
-          <DivImagePoster>
-            <ImgDrop alt="" src={`${URL_IMAGE}${data.backdrop_path}`} />
-            <DivOpacity></DivOpacity>
-          </DivImagePoster>
+            <DivImagePoster>
+              <ImgDrop alt="" src={`${URL_IMAGE}${data.backdrop_path}`} />
+              <DivOpacity></DivOpacity>
+            </DivImagePoster>
 
-          <SectionDescription>
-            <h3>{data.original_title || data.name}</h3>
+            <SectionDescription>
+              <h3>{data.original_title || data.name}</h3>
 
-            <div>
-              <button onClick={openTrailer}>
-                <IconTrailer /> Ver trailer
-              </button>
               <div>
-                <p>{numerOne}</p> <ColorStar />
+                <button onClick={openTrailer}>
+                  <IconTrailer /> Ver trailer
+                </button>
+                <div>
+                  <p>{numerOne}</p> <ColorStar />
+                </div>
               </div>
-            </div>
-          </SectionDescription>
+            </SectionDescription>
 
-          <SectionGenre>
-            {data.genres.map((gen) => (
-              <section key={gen.id}>
-                <p>{gen.name}</p>
-              </section>
-            ))}
-          </SectionGenre>
-          <OverView>{data.overview}</OverView>
+            <SectionGenre>
+              {data.genres.map((gen) => (
+                <section key={gen.id}>
+                  <p>{gen.name}</p>
+                </section>
+              ))}
+            </SectionGenre>
+            <OverView>{data.overview}</OverView>
 
-          <Credits />
-        </SectionImg>
+            <Credits />
+          </SectionImg>
 
-        <AllCredits />
-        <Reviews />
-        <ImageMovie />
-        <Recomendations />
-      </Main>
+          <AllCredits />
+          <Reviews />
+          <ImageMovie />
+          <Recomendations />
+        </Main>
 
-      <ContainerTrailer value={getTrailer}>
-        <ClosedTrailer onClick={closedTrailer} />
-        <SectionTrailer>
-          {!getTrailer ? "" : <YouTube videoId={setVideo} opts={opts} />}
-        </SectionTrailer>
-      </ContainerTrailer>
+        <ContainerTrailer value={getTrailer}>
+          <ClosedTrailer onClick={closedTrailer} />
+          <SectionTrailer>
+            {!getTrailer ? "" : <YouTube videoId={setVideo} opts={opts} />}
+          </SectionTrailer>
+        </ContainerTrailer>
+      </motion.section>
       <Footer />
     </>
   );

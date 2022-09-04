@@ -6,7 +6,6 @@ import LoaderMovies from "../../../Loaders/LoaderMovies";
 import { helpHttp } from "../../../Helper/Helphttps";
 import { useQuery } from "@tanstack/react-query";
 
-
 const SectionMovieCredits = styled.section`
   display: flex;
   overflow-x: auto;
@@ -81,23 +80,23 @@ const Main = styled.main`
 `;
 
 const PopularTv = () => {
-  // let X = Math.floor(Math.random() * 150);
   const URL_IMAGE = "https://image.tmdb.org/t/p/w500";
-  const API_URL = "https://api.themoviedb.org/3/tv/popular?api_key=c2b89afaf7bfa26140ce3d2bc5b5d295&page=1"
+  const API_URL =
+    "https://api.themoviedb.org/3/tv/popular?api_key=c2b89afaf7bfa26140ce3d2bc5b5d295&page=1";
 
   const getPopular = async () => {
     const response = await Promise.all([helpHttp().get(API_URL)]);
-    return response[0].results
-}
-  const { data, status } = useQuery(['tv'], getPopular);
+    return response[0].results;
+  };
+  const { data, status } = useQuery(["tv"], getPopular);
 
   if (status === "loading") {
-    return <LoaderMovies/>;
+    return <LoaderMovies />;
   }
-  
+
   return (
     <>
-        <Main>
+      <Main>
         <SectionMovieCredits>
           {data.map((movie) => (
             <NavL key={movie.id} to={`/tv/${movie.id}/${movie.original_title}`}>

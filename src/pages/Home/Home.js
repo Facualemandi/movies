@@ -8,6 +8,7 @@ import CoomingSoon from "../../components/ViewHome/4-CoomingSoon/CoomingSoon";
 import Trailers from "../../components/ViewHome/5-Trailers/Trailers";
 import Footer from "../../components/ViewHome/7-Footer/Footer";
 import TrendingToday from "../../components/ViewHome/6-Trending/TrendingToday";
+import { motion, AnimatePresence } from "framer-motion";
 
 const MorePopular = styled.h3`
   font-family: "Roboto", sans-serif;
@@ -51,7 +52,6 @@ const Select = styled.select`
   color: black;
 `;
 
-
 const Home = () => {
   const [valueSelect, setValueSelect] = useState("streaming");
 
@@ -63,21 +63,29 @@ const Home = () => {
     <>
       <Nav />
       <Search />
+      <AnimatePresence>
+        <motion.section
+          section
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0, transition: { duration: 0.6 } }}
+        >
+          <SectionPopular>
+            <MorePopular>Mas popular</MorePopular>
+            <Select onChange={onChangeValue} defaultValue="streaming">
+              <option value="streaming">Streaming</option>
+              <option value="tv">On TV</option>
+            </Select>
+          </SectionPopular>
 
-      <SectionPopular>
-        <MorePopular>Mas popular</MorePopular>
-        <Select onChange={onChangeValue} defaultValue="streaming">
-          <option value="streaming">Streaming</option>
-          <option value="tv">On TV</option>
-        </Select>
-      </SectionPopular>
-
-      {valueSelect === "streaming" && <PopularMovies />}
-      {valueSelect === "tv" && <PopularTv />}
-      <CoomingSoon />
-      <Trailers />
-      <TrendingToday />
-      <Footer />
+          {valueSelect === "streaming" && <PopularMovies />}
+          {valueSelect === "tv" && <PopularTv />}
+          <CoomingSoon />
+          <Trailers />
+          <TrendingToday />
+          <Footer />
+        </motion.section>
+      </AnimatePresence>
     </>
   );
 };

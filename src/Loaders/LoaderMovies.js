@@ -12,18 +12,6 @@ const Main = styled.main`
     width: 780px;
     display: flex;
     margin: auto;
-    ::-webkit-scrollbar {
-      width: 8px;
-      height: 10px;
-    }
-    ::-webkit-scrollbar-track {
-      background-color: rgba(72, 72, 72, 0.213);
-      border-radius: 10px;
-    }
-    ::-webkit-scrollbar-thumb {
-      background-color: #0303032a;
-      border-radius: 10px;
-    }
   }
   @media (min-width: 1080px) {
     width: 1080px;
