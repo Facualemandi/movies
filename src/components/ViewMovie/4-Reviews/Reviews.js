@@ -88,7 +88,7 @@ const Reviews = () => {
 
 
   if (status === "loading") {
-    return <p>Cargando</p>;
+    return ;
   }
 
   const newData = data.results.splice(0, 1);

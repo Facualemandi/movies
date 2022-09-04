@@ -103,7 +103,7 @@ const ImageMovie = () => {
 
 
   if (status === "loading") {
-    return <p>Cargando...</p>;
+    return ;
   }
 
 

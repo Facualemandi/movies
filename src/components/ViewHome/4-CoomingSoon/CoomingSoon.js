@@ -70,6 +70,9 @@ const H3 = styled.h3`
   font-size: 26px;
   margin: 10px;
   margin-top: 30px;
+  @media (max-width: 420px) {
+    font-size: 20px;
+  }
 `;
 const DataMovie = styled.p`
   font-size: 14px;

@@ -389,9 +389,13 @@ const Movie = () => {
           </SectionImg>
 
           <AllCredits />
+          
           <Reviews />
+          
           <ImageMovie />
+          
           <Recomendations />
+
         </Main>
 
         <ContainerTrailer value={getTrailer}>

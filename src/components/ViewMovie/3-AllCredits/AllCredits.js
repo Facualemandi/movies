@@ -87,7 +87,7 @@ const AllCredits = () => {
  const { data , status } = useQuery([`allCredits`], getAllCredits);
 
   if (status === "loading") {
-    return <p>Cargando</p>;
+    return ;
   }
   const newData = data.cast.slice(0, 20);
 

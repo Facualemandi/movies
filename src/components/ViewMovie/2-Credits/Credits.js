@@ -44,7 +44,7 @@ const Credits = () => {
   const { data, status } = useQuery(["credits"], getCredits);
 
   if (status === "loading") {
-    return <p>Cargando</p>;
+    return ;
   }
 
   const director = data.crew.filter((el) => el.job === "Director");

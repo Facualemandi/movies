@@ -25,7 +25,7 @@ const Section = styled.div`
   height: 230px;
   border-radius: 10px;
   width: 160px;
-  background-color: rgba(215, 215, 215, 0.296);
+  background-color: rgba(215, 215, 215, 0.526);
   box-shadow: 0px 0px 5px 0px rgba(141, 141, 141, 0.493);
   display: flex;
   justify-content: center;
@@ -40,9 +40,8 @@ const Container = styled.section`
 const Parragraph = styled.p`
   width: 100px;
   height: 15px;
-  background-color: black;
   margin-top: 15px;
-  background-color: rgba(215, 215, 215, 0.296);
+  background-color: rgba(215, 215, 215, 0.526);
 `;
 
 const ContainerSection = styled.section`
@@ -58,7 +57,7 @@ const Data = styled.p`
   height: 15px;
   background-color: black;
   margin-top: 10px;
-  background-color: rgba(215, 215, 215, 0.296);
+  background-color: rgba(215, 215, 215, 0.526);
 `;
 const IconImg = styled(BsFillImageFill)`
   width: 100px;

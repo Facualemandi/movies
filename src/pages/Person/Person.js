@@ -8,6 +8,7 @@ import { useReactQuery } from "../../hooks/useReactQuery";
 import MovieCredits from "../../components/ViewPerson/2-MovieCredits/MovieCredits";
 import MoviesPerson from "../../components/ViewPerson/3-MoviePerson/MoviePerson";
 import Footer from "../../components/ViewHome/7-Footer/Footer";
+import LoaderPerson from "../../Loaders/LoaderPerson";
 
 const Main = styled.main`
   width: 100vw;
@@ -142,7 +143,7 @@ const Person = () => {
   const { data, status } = useReactQuery(`${API_URL}`, name);
 
   if (status === "loading") {
-    return <p>Cargando</p>;
+    return <LoaderPerson/>;
   }
 
   return (

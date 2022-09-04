@@ -3,16 +3,18 @@ import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import Trading from "../../../images/trading.svg";
 import NotFundImage from "../../../images/ImagenNotFund.jpg";
-import LoaderMovies from '../../../Loaders/LoaderMovies';
+import LoaderMovies from "../../../Loaders/LoaderMovies";
 import { helpHttp } from "../../../Helper/Helphttps";
 import { useQuery } from "@tanstack/react-query";
-
 
 const SectionMovieCredits = styled.section`
   display: flex;
   overflow-x: auto;
   margin: auto;
   margin-top: 50px;
+  @media (max-width: 420px) {
+    margin-top: 15px;
+  }
 `;
 const Img = styled.img`
   width: 170px;
@@ -53,13 +55,13 @@ const Main = styled.main`
   overflow-x: auto;
   position: relative;
   margin-top: 180px;
-  
+
   @media (min-width: 780px) {
     width: 780px;
   }
   @media (min-width: 1080px) {
     width: 1080px;
-    margin-top: 0 ;
+    margin-top: 0;
   }
   @media (min-width: 1380px) {
     width: 1380px;
@@ -86,59 +88,74 @@ const Main = styled.main`
   }
 `;
 const ImgTrending = styled.img`
-position: absolute;
-z-index: auto;
-margin-top: 100px;
-`
+  position: absolute;
+  z-index: auto;
+  margin-top: 100px;
+  @media (max-width: 420px) {
+    margin-top: 60px;
+  }
+`;
 const DataMovie = styled.p`
   font-size: 14px;
   font-family: "Roboto", sans-serif;
   margin-top: 10px;
-`
+`;
 const H3 = styled.h3`
   font-family: "Roboto", sans-serif;
   font-size: 26px;
   margin: 10px;
   margin-top: 50px;
+  @media (max-width: 420px) {
+    font-size: 20px;
+    margin-top: 20px;
+  }
 `;
-
 
 const TrendingToday = () => {
   const URL_IMAGE = "https://image.tmdb.org/t/p/w500";
-  const API_URL = "https://api.themoviedb.org/3/trending/movie/day?api_key=c2b89afaf7bfa26140ce3d2bc5b5d295"
+  const API_URL =
+    "https://api.themoviedb.org/3/trending/movie/day?api_key=c2b89afaf7bfa26140ce3d2bc5b5d295";
 
-  
   const getTrending = async () => {
     const response = await Promise.all([helpHttp().get(API_URL)]);
-    return response[0].results
-  }
-  
-  const {data, status} = useQuery(['trending'], getTrending);
+    return response[0].results;
+  };
+
+  const { data, status } = useQuery(["trending"], getTrending);
 
   if (status === "loading") {
-    return <LoaderMovies/>;
+    return <LoaderMovies />;
   }
 
   return (
     <>
       <Main>
-      <H3>Tendencias</H3>
+        <H3>Tendencias</H3>
         <SectionMovieCredits>
           {data.map((movie) => (
-            <NavL key={movie.id} to={`/movie/${movie.id}/${movie.original_title}`}>
+            <NavL
+              key={movie.id}
+              to={`/movie/${movie.id}/${movie.original_title}`}
+            >
               <DivMovie>
                 <Img
                   alt={movie.original_title}
-                  src={movie.poster_path ? `${URL_IMAGE}${movie.poster_path}` : NotFundImage } />
+                  src={
+                    movie.poster_path
+                      ? `${URL_IMAGE}${movie.poster_path}`
+                      : NotFundImage
+                  }
+                />
                 <NameMovie>{`${movie.original_title || movie.name}`}</NameMovie>
-                <DataMovie>{movie.release_date || movie.first_air_date}</DataMovie>
+                <DataMovie>
+                  {movie.release_date || movie.first_air_date}
+                </DataMovie>
               </DivMovie>
             </NavL>
           ))}
         </SectionMovieCredits>
-        
-        
-        <ImgTrending alt="" src={Trading}/>
+
+        <ImgTrending alt="" src={Trading} />
       </Main>
     </>
   );

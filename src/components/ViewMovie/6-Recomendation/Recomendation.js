@@ -101,11 +101,11 @@ const H3 = styled.h3`
   font-size: 22px;
   margin: 15px;
 `;
-const  NoRecomendation = styled.p`
-margin: 15px;
-font-family: "Roboto", sans-serif;
-font-weight: bold;
-`
+const NoRecomendation = styled.p`
+  margin: 15px;
+  font-family: "Roboto", sans-serif;
+  font-weight: bold;
+`;
 const Recomendations = () => {
   const { id, watch } = useParams();
   const URL_IMAGE = "https://image.tmdb.org/t/p/w500";
@@ -118,7 +118,7 @@ const Recomendations = () => {
   const { data, status } = useQuery(["recomendation"], getRecomendation);
 
   if (status === "loading") {
-    return <p>Cargando</p>;
+    return;
   }
   const newData = data.slice(0, 15);
 
@@ -127,22 +127,26 @@ const Recomendations = () => {
       <Main>
         <H3>Recomendations</H3>
         <SectionMovieCredits>
-          {newData.length === 0
-            ? <NoRecomendation>No hay recomendaciones disponibles.</NoRecomendation>
-            : newData.map((el) => (
-                <NavL key={el.id} to={`/${watch}/${el.id}/${el.title}`}>
-                  <Img
-                    alt={el.original_title}
-                    src={
-                      el.poster_path
-                        ? `${URL_IMAGE}${el.poster_path}`
-                        : NotFundImage
-                    }
-                  />
-                  <NameMovie>{el.title || el.name}</NameMovie>
-                  <Data>{el.release_date || el.first_air_date}</Data>
-                </NavL>
-              ))}
+          {newData.length === 0 ? (
+            <NoRecomendation>
+              No hay recomendaciones disponibles.
+            </NoRecomendation>
+          ) : (
+            newData.map((el) => (
+              <NavL key={el.id} to={`/${watch}/${el.id}/${el.title}`}>
+                <Img
+                  alt={el.original_title}
+                  src={
+                    el.poster_path
+                      ? `${URL_IMAGE}${el.poster_path}`
+                      : NotFundImage
+                  }
+                />
+                <NameMovie>{el.title || el.name}</NameMovie>
+                <Data>{el.release_date || el.first_air_date}</Data>
+              </NavL>
+            ))
+          )}
         </SectionMovieCredits>
       </Main>
     </>

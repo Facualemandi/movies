@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { NavLink, useNavigate} from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Saul from "../../../images/saul.jpg";
 
@@ -16,7 +16,7 @@ const Img = styled.img`
   margin-top: 60px;
 
   @media (max-width: 420px) {
-    height: 310px;
+    height: 250px;
   }
   @media (min-width: 780px) {
     width: 780px;
@@ -33,10 +33,11 @@ const Img = styled.img`
 
 const H2 = styled.h2`
   font-size: 35px;
+
   @media (max-width: 380px) {
     font-size: 30px;
   }
-  @media (min-width: 780px){
+  @media (min-width: 780px) {
     margin-top: 60px;
   }
   @media (min-width: 1080px) {
@@ -71,6 +72,13 @@ const SectionWelcome = styled.section`
   color: white;
   z-index: 150;
 
+  @media (max-width: 420px) {
+    top: 0px;
+    padding: 0;
+    padding-left: 15px;
+    margin-top: 5px;
+  }
+
   @media (min-width: 780px) {
     width: 780px;
   }
@@ -92,7 +100,10 @@ const FormSearch = styled.form`
   margin-top: 15px;
   border-radius: 30px;
   width: auto;
-
+  @media (max-width: 420px) {
+    width: 95%;
+    height: 50px;
+  }
 `;
 
 const ToSearch = styled.p`
@@ -112,6 +123,11 @@ const ToSearch = styled.p`
   font-family: "Roboto", sans-serif;
   font-size: 24px;
   font-weight: bold;
+
+  @media (max-width: 420px) {
+    width: 100%;
+    height: 50px;
+  }
 `;
 
 const Container = styled.section`
@@ -135,7 +151,6 @@ const NavL = styled(NavLink)`
   text-decoration: none;
   color: white;
 `;
-
 
 const Search = () => {
   const [onChangeValue, setOnChangeValue] = useState("");
@@ -164,7 +179,6 @@ const Search = () => {
               Millones de películas, programas de televisión y personas por
               descubrir. Explora ahora.
             </H3>
-
 
             <FormSearch>
               <Input

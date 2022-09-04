@@ -3,7 +3,6 @@ import React from "react";
 import styled from "styled-components";
 import { helpHttp } from "../../../Helper/Helphttps";
 import TrailersImg from "../../../images/videoImg.jpg";
-import Youtube from 'react-youtube'
 
 const Main = styled.main`
   width: 100vw;
@@ -29,6 +28,9 @@ const Img = styled.img`
   top: 0px;
   z-index: 100;
   margin-top: 15px;
+  @media (max-width: 420px) {
+    height: 150px;
+  }
   @media (min-width: 780px) {
     width: 780px;
   }
@@ -54,6 +56,9 @@ const DivImg = styled.div`
   height: 200px;
   margin-top: 15px;
   background-color: rgba(3, 36, 63, 0.55);
+  @media (max-width: 420px) {
+    height: 150px;
+  }
   @media (min-width: 780px) {
     width: 780px;
   }
@@ -90,7 +95,6 @@ const Trailers = () => {
         <Img alt="" src={TrailersImg} />
         <DivImg></DivImg>
          {/* {data.map(el =>  <Youtube id={el.id}/>)} */}
-         
       </SectionImg>
    
     </Main>
