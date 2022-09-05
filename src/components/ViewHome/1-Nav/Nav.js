@@ -165,7 +165,7 @@ const UlContainer = styled.section`
     }
   }
 `;
-const NavL = styled(NavLink)`
+const NavL = styled(NavLink)` 
   text-decoration: none;
 
   @media (max-width: 780px) {
@@ -174,6 +174,8 @@ const NavL = styled(NavLink)`
       padding: 10px;
       margin-top: 5px;
       border-radius: 5px;
+      box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.450);
+      margin-top: 15px;
     }
   }
 `;
