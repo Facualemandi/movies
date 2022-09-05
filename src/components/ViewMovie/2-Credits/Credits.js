@@ -7,7 +7,7 @@ import { helpHttp } from "../../../Helper/Helphttps";
 const Job = styled.p`
   font-family: "Roboto", sans-serif;
   font-size: 16px;
-  @media (max-width: 400px){
+  @media (max-width: 400px) {
     font-size: 12px;
   }
 `;
@@ -16,7 +16,7 @@ const Name = styled.p`
   font-family: "Roboto", sans-serif;
   font-size: 20px;
   font-weight: bold;
-  @media (max-width: 400px){
+  @media (max-width: 400px) {
     font-size: 14px;
   }
 `;
@@ -47,15 +47,19 @@ const Credits = () => {
     const response = await Promise.all([helpHttp().get(API_KEY)]);
     return response[0];
   };
-  const { data, status } = useQuery(["credits"], getCredits);
+  let key = `credits ${id}`;
+  const { data, status } = useQuery([`${key}`], getCredits);
 
   if (status === "loading") {
-    return ;
+    return;
   }
 
-  const director = data.crew.filter((el) => el.job === "Director");
-  const screen = data.crew.filter((el) => el.job === "Screenplay");
-  const characters = data.crew.filter((el) => el.job === "Characters");
+  const director = data.crew.filter(
+    (el) => el.known_for_department === "Directing"
+  );
+  const screen = data.crew.filter(
+    (el) => el.known_for_department === "Production"
+  );
 
   return (
     <>
@@ -71,13 +75,6 @@ const Credits = () => {
           <section key={scr.id}>
             <Name>{scr.name}</Name>
             <Job>{scr.job}</Job>
-          </section>
-        ))}
-
-        {characters.map((char) => (
-          <section key={char.id}>
-            <Name>{char.name}</Name>
-            <Job>{char.job}</Job>
           </section>
         ))}
       </Main>
