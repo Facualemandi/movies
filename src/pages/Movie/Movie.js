@@ -11,11 +11,9 @@ import Reviews from "../../components/ViewMovie/4-Reviews/Reviews";
 import ImageMovie from "../../components/ViewMovie/5-ImageMovie/ImageMovie";
 import Recomendations from "../../components/ViewMovie/6-Recomendation/Recomendation";
 import Footer from "../../components/ViewHome/7-Footer/Footer";
+import { useReactQuery } from "../../hooks/useReactQuery";
 import LoaderDescript from "../../Loaders/LoaderDescript";
 import { motion } from "framer-motion";
-import { helpHttp } from "../../Helper/Helphttps";
-import { useQuery } from "@tanstack/react-query";
-import IMGNOTEXIST from '../../images/ImagenNotFund.jpg'
 
 const SecondNav = styled(NavLink)`
   height: auto;
@@ -321,15 +319,9 @@ const Movie = () => {
   const [getTrailer, setGetTrailer] = useState(false);
 
   let { id, watch } = useParams();
-  const API_URL = `https://api.themoviedb.org/3/${watch}/${id}?api_key=${process.env.REACT_APP_MOVIE_API_KEY}&append_to_response=videos`;
+  const API_URL = `https://api.themoviedb.org/3/${watch}/${id}?api_key=c2b89afaf7bfa26140ce3d2bc5b5d295&append_to_response=videos`;
   const URL_IMAGE = "https://image.tmdb.org/t/p/w500";
-  
-  const getMovies = async () => {
-    const response = await Promise.all([helpHttp().get(API_URL)]);
-    return response[0]
-  }
-
-  const { data, status } = useQuery([`${id}`], getMovies);
+  const { data, status } = useReactQuery(`${API_URL}`, id);
 
   if (status === "loading") {
     return <LoaderDescript />;
@@ -366,7 +358,7 @@ const Movie = () => {
       >
         <Main>
           <SectionImg>
-            <ImgPoster alt="" src={`${data.poster_path === null ? IMGNOTEXIST : `${URL_IMAGE}${data.poster_path}`}`} />
+            <ImgPoster alt="" src={`${URL_IMAGE}${data.poster_path}`} />
 
             <DivImagePoster>
               <ImgDrop alt="" src={`${URL_IMAGE}${data.backdrop_path}`} />

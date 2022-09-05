@@ -91,7 +91,7 @@ const ImageMovie = () => {
 
   const { id, watch } = useParams();
   const URL_IMAGE = "https://image.tmdb.org/t/p/w500";
-  const API_URL = `https://api.themoviedb.org/3/${watch}/${id}/images?api_key=${process.env.REACT_APP_MOVIE_API_KEY}`;
+  const API_URL = `https://api.themoviedb.org/3/${watch}/${id}/images?api_key=c2b89afaf7bfa26140ce3d2bc5b5d295`;
   
   const getImages = async () => {
     const response = await Promise.all([helpHttp().get(API_URL)]);

@@ -179,6 +179,7 @@ const PopularPeople = () => {
   };
 
   let pageQuery = `pagePople ${page}`;
+  console.log(pageQuery)
 
   const { data, status } = useQuery([`${pageQuery}`], getPopularPeople);
 

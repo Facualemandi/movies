@@ -9,8 +9,6 @@ import MovieCredits from "../../components/ViewPerson/2-MovieCredits/MovieCredit
 import MoviesPerson from "../../components/ViewPerson/3-MoviePerson/MoviePerson";
 import Footer from "../../components/ViewHome/7-Footer/Footer";
 import LoaderPerson from "../../Loaders/LoaderPerson";
-import { helpHttp } from "../../Helper/Helphttps";
-import { useQuery } from "@tanstack/react-query";
 
 const Main = styled.main`
   width: 100vw;
@@ -139,13 +137,7 @@ const Person = () => {
 
   const { id, name } = useParams();
   const API_URL = `https://api.themoviedb.org/3/person/${id}?api_key=c2b89afaf7bfa26140ce3d2bc5b5d295`;
-
-  const getPopularPeople = async () => {
-    const response = await Promise.all([helpHttp().get(API_URL)]);
-    return response[0]
-  }
-  
-  const { data, status } = useQuery([`${name}`], getPopularPeople);
+  const { data, status } = useReactQuery(`${API_URL}`, name);
 
   if (status === "loading") {
     return <LoaderPerson/>;
