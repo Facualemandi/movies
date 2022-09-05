@@ -1,7 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
-import NullAvatar from "../../../images/ImagenNotFund.jpg";
 import TheAvatar from "../../../images/avatar.jpg";
 import { useQuery } from "@tanstack/react-query";
 import { helpHttp } from "../../../Helper/Helphttps";
@@ -77,7 +76,7 @@ const NoReview = styled.p`
 
 const Reviews = () => {
   const { id, name, watch } = useParams();
-  const API_URL = `https://api.themoviedb.org/3/${watch}/${id}/reviews?api_key=c2b89afaf7bfa26140ce3d2bc5b5d295&page=1`;
+  const API_URL = `https://api.themoviedb.org/3/${watch}/${id}/reviews?api_key=${process.env.REACT_APP_MOVIE_API_KEY}&page=1`;
 
   const getReviews = async () => {
     const response = await Promise.all([helpHttp().get(API_URL)]);

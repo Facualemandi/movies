@@ -64,6 +64,26 @@ font-size: 22px;
 font-weight: bold;
 margin: 10px;
 `
+const SecondNav = styled(NavLink)`
+  height: auto;
+  min-height: 50px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  text-align: center;
+  background-color: #1f4c71;
+  color: white;
+  font-family: "Roboto", sans-serif;
+  width: 100%;
+  text-decoration: none;
+
+  p {
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+`;
 
 const MovieSearch = () => {
   const { toSearch } = useParams();
@@ -91,6 +111,9 @@ const MovieSearch = () => {
   return (
     <>
       <main>
+      <SecondNav to={"/"}>
+        <p>Volver</p>
+      </SecondNav>
         <ContainerAll>
 
         <Parraagraph>{person.length === 0 ? 'No hay personas con este nombre.' : 'Personas'}</Parraagraph>

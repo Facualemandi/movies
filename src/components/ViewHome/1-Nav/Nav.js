@@ -103,7 +103,7 @@ const ContainerUl = styled.section`
   }
 `;
 
-const UlTwoMovie = styled.li`
+const UlTwoMovie = styled.ol`
   list-style: none;
   margin: 5px;
 
@@ -135,7 +135,7 @@ const UlTwoMovie = styled.li`
   }
 `;
 
-const UlContainer = styled.p`
+const UlContainer = styled.section`
   display: flex;
   flex-direction: column;
   width: 100px;
