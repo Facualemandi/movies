@@ -167,6 +167,15 @@ const UlContainer = styled.section`
 `;
 const NavL = styled(NavLink)`
   text-decoration: none;
+
+  @media (max-width: 780px) {
+    li {
+      background-color: #073458;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 5px;
+    }
+  }
 `;
 
 const Nav = () => {
