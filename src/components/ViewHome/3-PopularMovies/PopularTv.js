@@ -92,6 +92,8 @@ const PopularTv = () => {
 
   if (status === "loading") {
     return <LoaderMovies />;
+  }else{
+    console.log(data)
   }
 
   return (
@@ -99,7 +101,7 @@ const PopularTv = () => {
       <Main>
         <SectionMovieCredits>
           {data.map((movie) => (
-            <NavL key={movie.id} to={`/tv/${movie.id}/${movie.original_title}`}>
+            <NavL key={movie.id} to={`/tv/${movie.id}/${movie.original_title || movie.original_name}`}>
               <DivMovie>
                 <Img
                   alt={movie.original_title}
