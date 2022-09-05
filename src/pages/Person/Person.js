@@ -31,8 +31,8 @@ const Main = styled.main`
   }
 `;
 const Img = styled.img`
-  width: 350px;
-  height: 450px;
+  width: 300px;
+  height: 400px;
   border-radius: 10px;
   display: flex;
   margin: 10px;
@@ -46,27 +46,32 @@ const Img = styled.img`
 `;
 
 const Key = styled.p`
-  margin: 10px;
   font-family: "Roboto", sans-serif;
-  font-size: 18px;
-  font-weight: bold;
-  margin-top: 30px;
+  font-size: 16px;
+  font-weight: 400;
+  margin: 3px;
+  margin-left: 10px;
 `;
 const Value = styled.p`
-  margin: 10px;
-  font-family: "Montserrat", sans-serif;
-  font-size: 16px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  color: grey;
+  font-size: 14px;
+  margin: 3px;
+  margin-left: 10px;
+  margin-top: 5px;
 `;
 
 const H2 = styled.h2`
   font-family: "Roboto", sans-serif;
   font-size: 35px;
-  margin: 5px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+  margin-top: 15px;
 `;
 const H3 = styled.h2`
   font-family: "Roboto", sans-serif;
   font-size: 25px;
+  font-weight: bold;
   margin: 10px;
   margin-bottom: 15px;
 `;
@@ -100,8 +105,9 @@ const Instagram = styled(FaInstagramSquare)`
   height: 35px;
 `;
 const Biography = styled.p`
-  font-family: "Montserrat", sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: 16px;
+  font-weight: 300;
   margin: 5px;
 `;
 
@@ -122,7 +128,6 @@ const SecondNav = styled(NavLink)`
   width: 100%;
   text-decoration: none;
 
-
   p {
     padding: 15px;
     display: flex;
@@ -130,7 +135,6 @@ const SecondNav = styled(NavLink)`
     align-items: center;
   }
 `;
-
 
 const Person = () => {
   const URL_IMAGE = "https://image.tmdb.org/t/p/w500";
@@ -140,7 +144,7 @@ const Person = () => {
   const { data, status } = useReactQuery(`${API_URL}`, name);
 
   if (status === "loading") {
-    return <LoaderPerson/>;
+    return <LoaderPerson />;
   }
 
   return (
@@ -148,7 +152,6 @@ const Person = () => {
       <SecondNav to={"/"}>
         <p>Volver</p>
       </SecondNav>
-      
 
       <Main>
         <ContainerPerson>
@@ -182,9 +185,8 @@ const Person = () => {
           <MoviesPerson />
         </DivConatainer>
       </Main>
-      
+
       <Footer />
-      
     </>
   );
 };

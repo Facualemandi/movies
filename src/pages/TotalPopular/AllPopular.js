@@ -41,9 +41,10 @@ const Data = styled.p`
 `;
 const OverView = styled.p`
   color: black;
-  font-family: "Heebo", sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: 14px;
-  max-height: 100px;
+  font-weight: 400;
+  max-height: 85px;
   overflow-y: auto;
   margin-top: 10px;
 `;
@@ -185,7 +186,6 @@ const AllPopular = () => {
     setPage(page - 1);
   };
 
-
   const API_URL = `https://api.themoviedb.org/3/${watch}/${type}?api_key=c2b89afaf7bfa26140ce3d2bc5b5d295&page=${page}`;
 
   const getAll = async () => {
@@ -207,7 +207,7 @@ const AllPopular = () => {
       <main>
         <SectionAll>
           <H3>
-             {(watch === "person" && `Las personas mas populares`) ||
+            {(watch === "person" && `Las personas mas populares`) ||
               (type === "upcoming" && "Próximamente") ||
               (type === "popular" && "Lo mas popular") ||
               (type === "now_playing" && "Transmitiendo ahora") ||

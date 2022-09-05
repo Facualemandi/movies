@@ -61,8 +61,9 @@ const NavL = styled(NavLink)`
 
 const H3 = styled.h3`
 font-family: 'Roboto', sans-serif;
-font-size: 28px;
-margin: 10px;
+font-size: 25px;
+margin-left: 5px;
+margin-top: 10px;
 `
 const MovieCredits = () => {
   const { id } = useParams();

@@ -268,7 +268,7 @@ const IconTrailer = styled(AiOutlinePlaySquare)`
 `;
 
 const OverView = styled.p`
-  width: 100%;
+  width: 98%;
   display: flex;
   margin: 10px auto;
   padding: 10px;

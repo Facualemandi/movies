@@ -1,7 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
-import NullAvatar from "../../../images/ImagenNotFund.jpg";
 import TheAvatar from "../../../images/avatar.jpg";
 import { useQuery } from "@tanstack/react-query";
 import { helpHttp } from "../../../Helper/Helphttps";
@@ -41,10 +40,10 @@ const DivUser = styled.div`
   }
 
   p {
-    font-family: "Montserrat", sans-serif;
-    margin: 3px;
-    font-size: 14px;
+    font-family: "Roboto", sans-serif;
     font-weight: 400;
+    font-size: 14px;
+    margin: 3px;
 
     span {
       font-family: "Montserrat", sans-serif;
@@ -69,11 +68,10 @@ const AllReview = styled.p`
 `;
 
 const NoReview = styled.p`
- font-family: 'Roboto', sans-serif;
- font-size: 25px;
- margin: 10px;
-
-`
+  font-family: "Roboto", sans-serif;
+  font-size: 25px;
+  margin: 10px;
+`;
 
 const Reviews = () => {
   const { id, name, watch } = useParams();
@@ -81,36 +79,37 @@ const Reviews = () => {
 
   const getReviews = async () => {
     const response = await Promise.all([helpHttp().get(API_URL)]);
-    return response[0]
-}
-  const { data , status } = useQuery([`${name}`], getReviews);
-
-
+    return response[0];
+  };
+  const { data, status } = useQuery([`${name}`], getReviews);
 
   if (status === "loading") {
-    return ;
+    return;
   }
 
   const newData = data.results.splice(0, 1);
 
-
   return (
     <>
       <Main>
-        {newData.length === 0
-          ? <NoReview>No hay comentarios</NoReview>
-          : newData.map((el) => (
-              <section key={el.id}>
-                <DivContainerUser>
-                  <Avatar alt="" src={TheAvatar } />
-                  <DivUser>
-                    <h4> A review <span>{el.author}</span> </h4>
-                    <Content>{el.content}</Content>
-                  </DivUser>
-                </DivContainerUser>
-              </section>
-            ))}
-        <AllReview>Read All View</AllReview>
+        {newData.length === 0 ? (
+          <NoReview>No hay comentarios</NoReview>
+        ) : (
+          newData.map((el) => (
+            <section key={el.id}>
+              <DivContainerUser>
+                <Avatar alt="" src={TheAvatar} />
+                <DivUser>
+                  <h4>
+                    {" "}
+                    A review <span>{el.author}</span>{" "}
+                  </h4>
+                  <Content>{el.content}</Content>
+                </DivUser>
+              </DivContainerUser>
+            </section>
+          ))
+        )}
       </Main>
     </>
   );

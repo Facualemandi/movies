@@ -5,8 +5,9 @@ import styled from "styled-components";
 import { helpHttp } from "../../../Helper/Helphttps";
 
 const Job = styled.p`
-  font-family: "Roboto", sans-serif;
-  font-size: 16px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: lighter;
+  font-size: 14px;
   @media (max-width: 400px) {
     font-size: 12px;
   }
@@ -16,9 +17,9 @@ const Job = styled.p`
 `;
 
 const Name = styled.p`
-  font-family: "Roboto", sans-serif;
-  font-size: 20px;
-  font-weight: bold;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
   @media (max-width: 400px) {
     font-size: 14px;
   }

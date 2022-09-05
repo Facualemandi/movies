@@ -5,7 +5,6 @@ import styled from "styled-components";
 import { helpHttp } from "../../../Helper/Helphttps";
 
 const Main = styled.main`
-  margin-top: 30px;
 `;
 
 const SectionBtns = styled.section`
