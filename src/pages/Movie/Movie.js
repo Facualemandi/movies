@@ -273,7 +273,8 @@ const OverView = styled.p`
   margin: 10px auto;
   padding: 10px;
   font-size: 18px;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
+  font-weight: lighter;
 
   @media (max-width: 400px){
     font-size: 15px;
@@ -299,7 +300,7 @@ const SectionGenre = styled.section`
   p {
     margin: 10px;
     font-family: "Roboto", sans-serif;
-    font-size: 18px;
+    font-size: 14px;
   }
 
   hr {
@@ -318,7 +319,6 @@ const Movie = () => {
   const [getTrailer, setGetTrailer] = useState(false);
 
   let { id, watch } = useParams();
-
   const API_URL = `https://api.themoviedb.org/3/${watch}/${id}?api_key=c2b89afaf7bfa26140ce3d2bc5b5d295&append_to_response=videos`;
   const URL_IMAGE = "https://image.tmdb.org/t/p/w500";
   const { data, status } = useReactQuery(`${API_URL}`, id);

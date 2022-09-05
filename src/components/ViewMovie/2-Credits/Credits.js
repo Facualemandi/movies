@@ -10,6 +10,9 @@ const Job = styled.p`
   @media (max-width: 400px) {
     font-size: 12px;
   }
+  @media (min-width: 780px){
+    font-size: 14px;
+  }
 `;
 
 const Name = styled.p`
@@ -19,7 +22,11 @@ const Name = styled.p`
   @media (max-width: 400px) {
     font-size: 14px;
   }
+  @media (min-width: 780px){
+    font-size: 16px;
+  }
 `;
+
 
 const Main = styled.main`
   display: grid;
@@ -54,12 +61,8 @@ const Credits = () => {
     return;
   }
 
-  const director = data.crew.filter(
-    (el) => el.known_for_department === "Directing"
-  );
-  const screen = data.crew.filter(
-    (el) => el.known_for_department === "Production"
-  );
+  const director = data.crew.filter( (el) => el.known_for_department === "Directing").slice(0, 5);
+  const screen = data.crew.filter((el) => el.known_for_department === "Production").slice(0, 10);
 
   return (
     <>

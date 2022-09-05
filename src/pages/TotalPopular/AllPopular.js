@@ -43,7 +43,7 @@ const OverView = styled.p`
   color: black;
   font-family: "Heebo", sans-serif;
   font-size: 14px;
-  max-height: 70px;
+  max-height: 100px;
   overflow-y: auto;
   margin-top: 10px;
 `;

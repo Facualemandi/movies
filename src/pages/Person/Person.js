@@ -134,9 +134,6 @@ const SecondNav = styled(NavLink)`
 
 const Person = () => {
   const URL_IMAGE = "https://image.tmdb.org/t/p/w500";
-  const URL_FACEBOOK = "https://www.facebook.com/";
-  const URL_TWITTER = "https://twitter.com/";
-  const URL_INSTAGRAM = "https://www.instagram.com/";
 
   const { id, name } = useParams();
   const API_URL = `https://api.themoviedb.org/3/person/${id}?api_key=c2b89afaf7bfa26140ce3d2bc5b5d295`;
