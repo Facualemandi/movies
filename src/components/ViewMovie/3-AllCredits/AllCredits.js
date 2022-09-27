@@ -11,6 +11,7 @@ const Img = styled.img`
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   max-width: 200px;
+  object-fit: cover;
 `;
 
 const Main = styled.main`
@@ -81,15 +82,15 @@ const AllCredits = () => {
   const { id, watch } = useParams();
   const URL_IMAGE = "https://image.tmdb.org/t/p/w500";
   const API_URL = `https://api.themoviedb.org/3/${watch}/${id}/credits?api_key=c2b89afaf7bfa26140ce3d2bc5b5d295`;
-  
+
   const getAllCredits = async () => {
     const response = await Promise.all([helpHttp().get(API_URL)]);
     return response[0]
-}
- const { data , status } = useQuery([`allCredits`], getAllCredits);
+  }
+  const { data, status } = useQuery([`allCredits`], getAllCredits);
 
   if (status === "loading") {
-    return ;
+    return;
   }
   const newData = data.cast.slice(0, 20);
 
@@ -104,11 +105,10 @@ const AllCredits = () => {
               <div>
                 <Img
                   alt={el.original_name}
-                  src={`${
-                    el.profile_path === null
+                  src={`${el.profile_path === null
                       ? NotFound
                       : `${URL_IMAGE}${el.profile_path}`
-                  }`}
+                    }`}
                 />
                 <NameActor>{el.original_name}</NameActor>
                 <Character>{el.character}</Character>

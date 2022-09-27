@@ -59,6 +59,7 @@ const ImgDrop = styled.img`
   width: 100%;
   height: 250px;
   z-index: 200;
+  object-fit: cover;
 
   @media (min-width: 780px) {
     height: 270px;
@@ -80,6 +81,7 @@ const ImgPoster = styled.img`
   z-index: 500;
   border-radius: 10px;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.665);
+  object-fit: cover;
 
   @media (min-width: 1080px) {
     width: 30%;
@@ -391,11 +393,11 @@ const Movie = () => {
           </SectionImg>
 
           <AllCredits />
-          
+
           <Reviews />
-          
+
           <ImageMovie />
-          
+
           <Recomendations />
 
         </Main>
