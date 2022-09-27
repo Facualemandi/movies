@@ -25,6 +25,7 @@ const Image = styled.img`
   width: 350px;
   height: 300px;
   border-radius: 10px;
+  object-fit: contain;
 `;
 
 const SectiosItems = styled.section`
@@ -63,14 +64,14 @@ const ButtonOne = styled.button`
     value === true
       ? "linear-gradient(90deg, rgba(34, 193, 195, 1) 28%, rgba(0, 139, 207, 1) 100% )"
       : "  rgba(188, 188, 188, 0.296);"};
-      color: ${({value}) => value ? 'white' : 'black'};
+      color: ${({ value }) => value ? 'white' : 'black'};
 `;
 const ButtonTwo = styled.button`
   background: ${({ value }) =>
     value === true
       ? "linear-gradient(90deg, rgba(34, 193, 195, 1) 28%, rgba(0, 139, 207, 1) 100% )"
       : "rgba(188, 188, 188, 0.296);"};
-      color: ${({value}) => value ? 'white' : 'black'};
+      color: ${({ value }) => value ? 'white' : 'black'};
 
 
 `;
@@ -79,7 +80,7 @@ const ButtonThree = styled.button`
     value === true
       ? "linear-gradient(90deg, rgba(34, 193, 195, 1) 28%, rgba(0, 139, 207, 1) 100% )"
       : "rgba(188, 188, 188, 0.296);"};
-      color: ${({value}) => value ? 'white' : 'black'};
+      color: ${({ value }) => value ? 'white' : 'black'};
 
 `;
 
@@ -91,18 +92,18 @@ const ImageMovie = () => {
   const { id, watch } = useParams();
   const URL_IMAGE = "https://image.tmdb.org/t/p/w500";
   const API_URL = `https://api.themoviedb.org/3/${watch}/${id}/images?api_key=c2b89afaf7bfa26140ce3d2bc5b5d295`;
-  
+
   const getImages = async () => {
     const response = await Promise.all([helpHttp().get(API_URL)]);
     return response[0]
-}
- const { data , status } = useQuery(["images"], getImages);
- 
+  }
+  const { data, status } = useQuery(["images"], getImages);
+
 
 
 
   if (status === "loading") {
-    return ;
+    return;
   }
 
 
@@ -126,14 +127,14 @@ const ImageMovie = () => {
     setLogos(true);
     setPosters(false);
   };
-  
+
 
   return (
     <>
       <Main>
         <SectionBtns>
           <H3>Media</H3>
-          
+
           <ButtonOne value={backDrops} onClick={getBackdrops}>
             Backdrops
           </ButtonOne>
