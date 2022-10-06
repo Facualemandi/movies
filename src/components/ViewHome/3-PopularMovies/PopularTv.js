@@ -92,10 +92,7 @@ const PopularTv = () => {
 
   if (status === "loading") {
     return <LoaderMovies />;
-  }else{
-    console.log(data)
   }
-
   return (
     <>
       <Main>
